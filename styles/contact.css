@@ -1,0 +1,86 @@
+.main-content {
+  position: relative;
+  padding: 70px 0 0 0;
+  overflow: hidden;
+}
+
+.main-content h3 {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.main-content .row {
+  padding: 30px 0 50px 0;
+}
+
+.main-content .row-left h5 {
+  color: #00f;
+}
+
+.main-content .row-left p {
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.main-content .row-left i {
+  padding-right: 10px;
+}
+
+.main-content .row-right {
+  height: 30vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main-content .row-right iframe {
+  width: 90%;
+  height: 100%;
+  display: block;
+  border: none;
+  box-shadow: 1px 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.main-content .row-left .location {
+  color: red;
+}
+
+.main-content .row-left .phone {
+  color: blue;
+}
+
+.main-content .row-left .fax {
+  color: #969696;
+}
+
+.main-content .row-left .email {
+  color: #969696;
+}
+
+.main-content .row-left .internet {
+  color: #5c72ff;
+}
+
+@media screen and (max-width: 1089px) {
+  .main-content {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .container {
+    margin-top: 0;
+  }
+
+  .main-content .row .row-left {
+    text-align: center;
+  }
+
+  .main-content .row .row-right {
+    height: 40vw;
+    justify-content: center;
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,220 @@
+.carousel {
+  position: relative;
+  padding-top: 54px;
+}
+
+.carousel .carousel-inner {
+  width: 100%;
+  height: 618px;
+}
+
+.carousel .carousel-inner .carousel-item {
+  height: 100%;
+}
+
+.carousel .carousel-inner .carousel-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.main-content {
+  position: relative;
+  height: auto;
+  padding: 0;
+}
+
+.main-content .general-introduce {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.main-content .left-section {
+  width: 40%;
+  height: 500px;
+  position: relative;
+  z-index: 1;
+}
+
+.left-section .left-section-inner {
+  position: relative;
+  top: 0;
+  left: -20%;
+  transform: skew(-10deg);
+  width: 142%;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 1px 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.left-section .left-section-inner .interface-left-section {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-left: 12%;
+  transform: skew(10deg);
+  background-image: url('../images/index-image-1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left-section .left-section-inner .interface-left-section .info {
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15%;
+  color: #fff;
+}
+
+.bottom-section-inner::before {
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* z-index: -1; */
+}
+
+.bottom-section-inner {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  background-image: url('https://thuthuatnhanh.com/wp-content/uploads/2018/09/hinh-anh-thanh-pho-new-york-cau-brooklyn-dem.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bottom-info {
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 18%;
+  color: #fff;
+}
+
+.bottom-info h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.bottom-info p {
+  font-weight: 500;
+  text-align: center;
+  width: 80%;
+  padding-left: 200px;
+}
+
+.left-section .left-section-inner .interface-left-section .info h3 {
+  font-size: 40px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.left-section .left-section-inner .interface-left-section .info p {
+  padding-top: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.left-section .left-section-inner .interface-left-section::before {
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.main-content .right-section {
+  width: 60%;
+  height: 500px;
+  background: url('../images/index-image-2.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
+}
+
+.right-section .interface-right-section {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.right-section .interface-right-section .info {
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 30%;
+  color: #fff;
+}
+
+.right-section .interface-right-section .info h3 {
+  font-size: 40px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.right-section .interface-right-section .info p {
+  padding-top: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 991px) {
+  .carousel .carousel-inner {
+    height: 380px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .carousel .carousel-inner {
+    height: 250px;
+  }
+
+  .main-content .general-introduce {
+    flex-flow: column wrap;
+  }
+
+  .main-content .left-section,
+  .main-content .right-section {
+    width: 100%;
+    height: 400px;
+  }
+
+  .left-section .left-section-inner {
+    transform: skew(0);
+    left: 0;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .left-section .left-section-inner .interface-left-section {
+    transform: skew(0deg);
+    margin-left: 0;
+  }
+
+  .left-section .left-section-inner .interface-left-section .info {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .right-section .interface-right-section .info {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

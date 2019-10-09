@@ -1,0 +1,225 @@
+#footer {
+  width: 100%;
+  height: auto;
+  background: url('https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80')
+    center no-repeat;
+  background-size: cover;
+  position: relative;
+  top: 0;
+}
+
+.footer-interface {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.footer-interface .footer-left {
+  padding: 30px 0 0 150px;
+}
+
+.footer-interface .info ul {
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+.footer-interface .info ul li {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.copy-right {
+  font-size: 12px;
+  padding: 0 0 15px 0;
+}
+
+.footer-interface .footer-center {
+  padding: 40px 0 0 20px;
+}
+
+.footer-interface .terms h3 {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.footer-interface .terms ul {
+  list-style-type: none;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.footer-interface .terms ul li {
+  margin: 3px;
+  font-size: 15px;
+}
+
+.footer-interface .terms ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-interface .terms ul li:hover a {
+  text-shadow: 1px 0 1px #fff;
+}
+
+.footer-interface .footer-right {
+  padding: 40px 0 0 40px;
+}
+
+.footer-interface .links h3 {
+  box-sizing: border-box;
+  font-size: 17px;
+}
+
+.footer-interface .links .links-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.footer-interface .links .links-container span {
+  width: 34px;
+  height: 34px;
+  margin-left: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.footer-interface .links .links-container i {
+  font-size: 18px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.footer-interface .links .links-container span:nth-child(1) {
+  background-color: #00f;
+}
+
+.footer-interface .links .links-container span:nth-child(2) {
+  background-color: #f00;
+}
+
+.footer-interface .links .links-container span:nth-child(3) {
+  background-color: #1da1f2;
+}
+
+.footer-interface .links .links-container span:nth-child(4) {
+  background-color: #f00;
+}
+.footer-interface .links .links-container span:nth-child(1):hover {
+  background-color: #6262fc;
+}
+.footer-interface .links .links-container span:nth-child(2):hover {
+  background-color: #ff6b6b;
+}
+.footer-interface .links .links-container span:nth-child(3):hover {
+  background-color: #74bfed;
+}
+.footer-interface .links .links-container span:nth-child(4):hover {
+  background-color: #ff6b6b;
+}
+.footer-interface .footer-right .payment-methods {
+  width: 100%;
+  padding-top: 30px;
+}
+
+.footer-interface .footer-right .payment-methods h3 {
+  font-size: 15px;
+}
+
+.footer-interface .footer-right .payment-methods a {
+  width: 50%;
+  display: block;
+}
+
+.footer-interface .footer-right .payment-methods a img {
+  width: 100%;
+  display: block;
+}
+
+@media screen and (max-width: 991px) {
+  .footer-interface .footer-left {
+    padding: 30px 0 0 22%;
+  }
+
+  .footer-interface .footer-center {
+    padding: 20px 0 10px 22%;
+  }
+
+  .footer-interface .footer-right {
+    padding: 20px 0 10px 1%;
+  }
+
+  .footer-interface .footer-right .payment-methods a {
+    width: 38%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer-interface .info ul li {
+    text-align: center;
+  }
+  .footer-interface .footer-left h3 {
+    text-align: center;
+  }
+  .copy-right {
+    text-align: center;
+  }
+  .footer-interface .footer-left {
+    padding: 30px 16% 0 16%;
+  }
+
+  .footer-interface .footer-center {
+    padding: 20px 0 10px 16%;
+  }
+
+  .footer-interface .footer-right {
+    padding: 20px 0 10px 1%;
+  }
+
+  .footer-interface .footer-right .payment-methods a {
+    width: 38%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .footer-interface .footer-center {
+    padding: 15px 0 10px 0;
+    text-align: center;
+  }
+
+  .footer-interface .footer-center {
+    padding: 30px 0 0 0;
+  }
+
+  .footer-interface .terms h3 {
+    margin-bottom: 5px;
+  }
+
+  .footer-interface .terms li a {
+    text-align: center;
+  }
+
+  .footer-interface .footer-right {
+    padding: 0 0 10px 0;
+    text-align: center;
+  }
+
+  .footer-interface .links .links-container {
+    justify-content: center;
+  }
+
+  .footer-interface .links .links-container span {
+    margin: 5px;
+  }
+
+  .footer-interface .footer-right .payment-methods a {
+    margin: 0 auto;
+  }
+}

@@ -99,93 +99,131 @@
         <div class="panel panel-default">
           <div class="panel-heading-down">TIN TỨC MỚI</div>
           <div class="panel-body panel-body-left">
+               
+          <?php 
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            mysqli_set_charset($conn, 'UTF8');
+            if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+            }
+            $numOfProductsPerPage = 4;
 
-            <div class="media media-bottom">
-              <div class="media-img">
-                <a href="news-detail.html"><img src="../images/carousel-image-4.jpg" class="align-self-start mr-3"
-                    alt="..."></a>
-              </div>
-              <div class="media-body">
-                <a href="news-detail.html" class="media-body-link">
-                  <h5 class="mt-0">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</h5>
-                </a>
-                <p class="news-date">Ngày đăng 18/8/2019 12:30</p>
-                <p class="news-content">Tấm Compact HPL và gỗ MFC đều là những vật liệu tốt trong thiết kế và chế tạo
-                  các sản phẩm nội thất. Đặc biệt 2 vật liệu này có nhiều điểm tương đồng với nhau, bài viết sẽ giúp các
-                  bạn phân biệt giữa tấm Compact và gỗ MFC.
-                </p>
-              </div>
-            </div>
-            <div class="media media-bottom">
-              <div class="media-img">
-                <a href="news-detail.html"><img src="../images/carousel-image-4.jpg" class="align-self-start mr-3"
-                    alt="..."></a>
-              </div>
-              <div class="media-body">
-                <a href="news-detail.html" class="media-body-link">
-                  <h5 class="mt-0">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</h5>
-                </a>
-                <p class="news-date">Ngày đăng 18/8/2019 12:30</p>
-                <p class="news-content">Tấm Compact HPL và gỗ MFC đều là những vật liệu tốt trong thiết kế và chế tạo
-                  các sản phẩm nội thất. Đặc biệt 2 vật liệu này có nhiều điểm tương đồng với nhau, bài viết sẽ giúp các
-                  bạn phân biệt giữa tấm Compact và gỗ MFC.
-                </p>
-              </div>
-            </div>
-            <div class="media media-bottom">
-              <div class="media-img">
-                <a href="news-detail.html"><img src="../images/carousel-image-4.jpg" class="align-self-start mr-3"
-                    alt="..."></a>
-              </div>
-              <div class="media-body">
-                <a href="news-detail.html" class="media-body-link">
-                  <h5 class="mt-0">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</h5>
-                </a>
-                <p class="news-date">Ngày đăng 18/8/2019 12:30</p>
-                <p class="news-content">Tấm Compact HPL và gỗ MFC đều là những vật liệu tốt trong thiết kế và chế tạo
-                  các sản phẩm nội thất. Đặc biệt 2 vật liệu này có nhiều điểm tương đồng với nhau, bài viết sẽ giúp các
-                  bạn phân biệt giữa tấm Compact và gỗ MFC.
-                </p>
-              </div>
-            </div>
-            <div class="media">
-              <div class="media-img">
-                <a href="news-detail.html"><img src="../images/carousel-image-4.jpg" class="align-self-start mr-3"
-                    alt="..."></a>
-              </div>
-              <div class="media-body">
-                <a href="news-detail.html" class="media-body-link">
-                  <h5 class="mt-0">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</h5>
-                </a>
-                <p class="news-date">Ngày đăng 18/8/2019 12:30</p>
-                <p class="news-content">Tấm Compact HPL và gỗ MFC đều là những vật liệu tốt trong thiết kế và chế tạo
-                  các sản phẩm nội thất. Đặc biệt 2 vật liệu này có nhiều điểm tương đồng với nhau, bài viết sẽ giúp các
-                  bạn phân biệt giữa tấm Compact và gỗ MFC.
-                </p>
-              </div>
-            </div>
+            $sql = "SELECT COUNT(id) FROM news";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+              $row = $result->fetch_assoc();
+              $productsTotal = (int)$row["COUNT(id)"];
+            }
+
+            if(isset($_GET{'page'})) {
+              $startPage = ($_GET{'page'} - 1) * $numOfProductsPerPage;
+              $endPage = $_GET{'page'} * $numOfProductsPerPage;
+            } else {
+              $startPage = 0;
+            }
+
+            $sql =  "SELECT id, title, publicDate, imgAddress, content FROM news LIMIT $startPage, $numOfProductsPerPage";
+            $result = $conn->query($sql);
+              
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()) {        
+          ?>   
+                <div class="media media-bottom">
+                  <div class="media-img">
+                    <a href="news-detail.php?id=<?php echo $row['id']; ?>"><img src="<?php echo $row['imgAddress']; ?>" class="align-self-start"
+                          alt=""></a>
+                  </div>
+                  <div class="media-body">
+                    <a href="news-detail.php?id=<?php echo $row['id']; ?>" class="media-body-link">
+                      <h5 class="mt-0"><?php echo $row['title']; ?></h5>
+                    </a>
+                    <div class="news-date">Ngày đăng <?php echo $row['publicDate']; ?></div>
+                    <div class="news-content">
+                      <?php echo $row['content']; ?>
+                    </div>
+                  </div>
+                </div>
+          <?php 
+              }
+            }
+            $conn->close();
+          ?>   
           </div>
-          <div class="col-12 col-lg-6 navigation">
-            <nav id="bottom-news">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+
+          <nav aria-label="navigation example">
+            <ul class="pagination justify-content-center">
+              <?php 
+                $pageTotal = $productsTotal/4;
+                if ($pageTotal !== (int)$pageTotal) {
+                  $pageTotal = (int)$pageTotal + 1;
+                } else {
+                  $pageTotal = $pageTotal;
+                }
+
+                if(isset($_GET{'page'})) {
+                  $pagePrevOffset = (int)$_GET{'page'};
+                  $pageNextOffset = (int)$_GET{'page'};
+                } else {
+                  $pageNextOffset = 0;
+                  $pagePrevOffset = 1;
+                }
+              ?>
+              <li class="page-item">
+                <a class="page-link" href="news.php?page=1" aria-label="Previous">
+                  <span aria-hidden="true"><i class="fas fa-angle-double-left"></i></span>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="news.php?page=<?php 
+                if (!isset($_GET{'page'})) {
+                  echo $pagePrevOffset;
+                } else {
+                  if($pagePrevOffset > 1) {
+                    echo --$pagePrevOffset;
+                  } else if ($pagePrevOffset === 1){
+                    echo $pagePrevOffset;
+                  }
+                }
+                ?>" aria-label="Previous">
+                  <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+                </a>
+              </li>
+              <?php 
+                $countPage = 0;
+                while($countPage < $pageTotal) {
+                  $countPage++;
+              ?>
+                  <li class="page-item">
+                    <a class="page-link" href="news.php?page=<?php echo $countPage; ?>"><?php echo $countPage; ?></a>
+                  </li>
+              <?php } ?>
+                
+              <li class="page-item">
+                <a class="page-link" href="news.php?page=<?php 
+                    if (!isset($_GET{'page'})) {
+                      echo $pageNextOffset += 2;
+                    } else {   
+                      if($pageNextOffset < $pageTotal) {
+                        echo ++$pageNextOffset;
+                      } else if ($pageNextOffset === $pageTotal) {
+                        echo $pageNextOffset;
+                      }
+                    }
+                ?>" aria-label="Next">
+                  <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="news.php?page=<?php echo $pageTotal; ?>"  aria-label="Next">
+                  <span aria-hidden="true"><i class="fas fa-angle-double-right"></i></span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
+
       <div class="col-lg-3">
         <div class="panel panel-right-top">
           <div class="panel-heading">CHỦ ĐỀ</div>
@@ -233,6 +271,7 @@
       </div>
     </div>
   </div>
+
   <footer id="footer" class="container-fluid">
     <div class="row footer-interface">
       <div class="footer-left col col-lg-6 col-sm-12 col-12">

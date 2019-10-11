@@ -168,13 +168,18 @@
 }
 
 .main-content h3 .category-title {
+  border-bottom: 3px solid #ff7c00;
+  border-left: 2px solid #e4e4e4;
+  border-right: 2px solid #e4e4e4;
+  border-top: 2px solid #e4e4e4;
+  background-color: #f7f7f7;
   display: inline-block;
-  text-align: center;
-  font-weight: 600;
-  padding: 0 4%;
-  background: linear-gradient( 90deg, rgba(0, 48, 135, 0.7), rgba(0, 156, 222, 0.7));
-  border-radius: 8px;
-  outline: 2px solid #0055ff;
+  font-size: 26px;
+  text-transform: uppercase;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 60px 0 60px;
+  color: #000;
 }
 
 @keyframes toggleInfo {
@@ -214,10 +219,10 @@
     margin: 0;
   }
   .sidebar .menu-container ul li {
-    height: 60px;
+    height: 54px;
   }
   .sidebar .menu-container ul li a {
-    line-height: 60px;
+    line-height: 54px;
     text-align: center;
     display: block;
     position: relative;
@@ -233,21 +238,14 @@
   }
   .main-content {
     width: 100%;
-    padding: 40px 0 0 0;
+    padding: 40px 0 20px 0;
     margin: 0 auto;
   }
   .main-content .row {
-    padding: 20px 0 60px 0;
+    padding: 30px 0 30px 0;
   }
   .main-content .row .col {
-    height: 30vw;
-  }
-  .main-content h3 .category-title {
-    height: 60px;
-    line-height: 60px;
-    font-size: 4.5vw;
-    font-weight: bold;
-    outline-offset: 5px;
+    height: 200px;
   }
   .main-content .row>.col-left>.item {
     width: 95%;
@@ -261,7 +259,6 @@
     height: 90%;
     position: relative;
     margin-top: 5%;
-    /* margin-left: -5%; */
   }
 }
 
@@ -288,6 +285,7 @@
     justify-content: center;
     align-items: center;
     height: 46vw;
+    margin-bottom: 20px;
   }
   .main-content .row>.col>.item {
     width: 60%;
@@ -305,6 +303,10 @@
     height: 40px;
     line-height: 40px;
   }
+  .main-content h3 .category-title {
+    font-size: 20px;
+    padding: 0 20px 0 20px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -313,7 +315,7 @@
   }
   .sidebar {
     width: 20%;
-    padding-top: 30px;
+    padding-top: 10px;
   }
   .sidebar h3 {
     padding: 0 4%;
@@ -327,11 +329,11 @@
     margin-top: 80px;
   }
   .sidebar .menu-container ul li {
-    height: 60px;
+    height: 50px;
     color: #949696;
   }
   .sidebar .menu-container ul li a {
-    line-height: 60px;
+    line-height: 50px;
     padding-left: 8%;
     display: block;
     position: relative;
@@ -347,7 +349,7 @@
   }
   .main-content {
     width: 80%;
-    padding: 100px 0 0 0;
+    padding: 80px 0 0 0;
   }
   .main-content .row {
     padding: 20px 0 40px 0;
@@ -355,32 +357,29 @@
   .main-content .row>.col {
     height: 20vw;
   }
-  .main-content h3 .category-title {
-    height: 60px;
-    font-size: 3.4vw;
-    line-height: 60px;
-    outline-offset: 8px;
-  }
-  .main-content .row>.col-left>.item {
+  .main-content .row>.left-col>.item {
     width: 70%;
     height: 90%;
     position: relative;
     margin-top: 5%;
     margin-left: 30%;
   }
-  .main-content .row>.col-right>.item {
+  .main-content .row>.right-col>.item {
     width: 70%;
     height: 90%;
     position: relative;
     margin-top: 5%;
     margin-right: 30%;
   }
+  .main-content .row>.col>.item>.caption {
+    padding: 0 10px 0 10px;
+  }
 }
 
 @media screen and (min-width: 992px) {
   .sidebar {
     width: 20%;
-    padding-top: 30px;
+    padding-top: 10px;
   }
   .sidebar h3 {
     padding: 0 5%;
@@ -391,11 +390,11 @@
     color: #fff;
   }
   .sidebar .menu-container ul li {
-    height: 60px;
+    height: 54px;
     color: #949696;
   }
   .sidebar .menu-container ul li a {
-    line-height: 60px;
+    line-height: 54px;
     padding-left: 10%;
     font-size: 1.2vw;
   }
@@ -409,22 +408,13 @@
   }
   .main-content {
     width: 80%;
-    padding: 120px 0 0 0;
+    padding: 100px 0 20px 0;
   }
   .main-content .row {
-    padding-top: 40px;
+    padding: 30px 0 50px 0;
   }
   .main-content .row>.col {
     height: 16vw;
-  }
-  .main-content h3 {
-    text-align: center;
-  }
-  .main-content h3 .category-title {
-    height: 70px;
-    font-size: 3vw;
-    line-height: 70px;
-    outline-offset: 8px;
   }
   .main-content .row>.st-col>.item {
     width: 85%;

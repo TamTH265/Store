@@ -75,7 +75,7 @@
                     while($r = $result->fetch_assoc()) {
                 ?>                 
                       <li>
-                        <a href="<?php echo  $r["addresses"];?>.php">
+                        <a href="<?php echo $r["addresses"];?>.php">
                           <?php echo $r["item"]; ?>
                         </a>
                       </li>                  
@@ -95,156 +95,143 @@
     <div class="menu-toggle"><i class="fas fa-bars" aria-hidden="true"></i></div>
   </header>
 
-  <div class="container">
+  <div class="container main-content">
+    <h3><span class="category-title">Các dự án đã thực hiện</span></h3>
     <div class="row">
-      <div class="col row-left">
-        <div class="title">
-          <h5>SERVICES</h5>
-        </div>
-        <div class="contents">
-          <div class="row">
-            <div class="col-4 content-left">
-              <div class="border-content">
-                <a href="../views/service-detail.html">
-                  <img src="../images/carousel-image-4.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="../views/service-detail.html">
-                    <h6>Thi công vách ngăn nhà vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
+    <?php 
+      $conn = new mysqli($servername, $username, $password, $dbname);
+      mysqli_set_charset($conn, 'UTF8');
+      if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+      }
+      $numOfProductsPerPage = 9;
 
-            </div>
-            <div class="col-4 content-bottom">
-              <div class="border-content">
-                <a href="#">
-                  <img src="../images/carousel-image-3.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="#">
-                    <h6>Thiết kế vách ngăn nhà vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 content-right">
-              <div class="border-content">
-                <a href="#">
-                  <img src="../images/carousel-image-2.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="#">
-                    <h6>Cung cấp vật tư vách ngăn vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
+      $sql = "SELECT COUNT(id) FROM services";
+      $result = $conn->query($sql);
+
+      if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $productsTotal = (int)$row["COUNT(id)"];
+      }
+
+      if(isset($_GET{'page'})) {
+        $startPage = ($_GET{'page'} - 1) * $numOfProductsPerPage;
+        $endPage = $_GET{'page'} * $numOfProductsPerPage;
+      } else {
+        $startPage = 0;
+      }
+
+      $sql =  "SELECT id, title, imgAddress FROM services LIMIT $startPage, $numOfProductsPerPage";
+      $result = $conn->query($sql);
+      
+      if ($result->num_rows > 0) {
+        $checkIndexAtTwoColsState = 0;
+        $checkIndexAtThreeColState = 0;
+        $indexAtTwoColsState = "left";
+        $indexAtThreeColsState = "st";
+        while($row = $result->fetch_assoc()) {        
+          if ($checkIndexAtTwoColsState === 0) {
+            $indexAtTwoColsState = "left";
+            $checkIndexAtTwoColsState = 1;
+          } else {
+            $indexAtTwoColsState = "right";
+            $checkIndexAtTwoColsState = 0;
+          }
+
+          if ($checkIndexAtThreeColState === 0) {
+            $indexAtThreeColsState = "st";
+            $checkIndexAtThreeColState = 1;
+          } else if ($checkIndexAtThreeColState === 1) {
+            $indexAtThreeColsState = "nd";
+            $checkIndexAtThreeColState = 2;
+          } else {
+            $indexAtThreeColsState = "rd";
+            $checkIndexAtThreeColState = 0;
+          }
+    ?>   
+          <div class="col col-lg-4 col-sm-6 col-12 <?php echo $indexAtTwoColsState;?>-col <?php echo $indexAtThreeColsState; ?>-col">
+            <div class="item">
+              <a href="service-detail.php?id=<?php echo $row["id"]; ?>"><img src="<?php echo $row["imgAddress"];?>" alt=""></a>            
+              <span class="caption"><?php echo $row["title"]; ?></span>
             </div>
           </div>
-
-          <div class="row">
-            <div class="col-4 content-left">
-              <div class="border-content">
-                <a href="../views/service-detail.html">
-                  <img src="../images/carousel-image-4.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="../views/service-detail.html">
-                    <h6>Thi công vách ngăn nhà vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-4 content-bottom">
-              <div class="border-content">
-                <a href="#">
-                  <img src="../images/carousel-image-3.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="#">
-                    <h6>Thiết kế vách ngăn nhà vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 content-right">
-              <div class="border-content">
-                <a href="#">
-                  <img src="../images/carousel-image-2.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="#">
-                    <h6>Cung cấp vật tư vách ngăn vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-4 content-left">
-              <div class="border-content">
-                <a href="../views/service-detail.html">
-                  <img src="../images/carousel-image-4.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="../views/service-detail.html">
-                    <h6>Thi công vách ngăn nhà vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-4 content-bottom">
-              <div class="border-content">
-                <a href="#">
-                  <img src="../images/carousel-image-3.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="#">
-                    <h6>Thiết kế vách ngăn nhà vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 content-right">
-              <div class="border-content">
-                <a href="#">
-                  <img src="../images/carousel-image-2.jpg" class="align-self-start mr-3" alt="...">
-                </a>
-                <div class="border-content-detail">
-                  <a href="#">
-                    <h6>Cung cấp vật tư vách ngăn vệ sinh</h6>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <?php 
+        }
+      }
+      $conn->close();
+    ?>
 
     </div>
+    <nav aria-label="navigation example">
+      <ul class="pagination justify-content-center">
+        <?php 
+          $pageTotal = $productsTotal/9;
+          if ($pageTotal !== (int)$pageTotal) {
+            $pageTotal = (int)$pageTotal + 1;
+          } else {
+            $pageTotal = $pageTotal;
+          }
 
-    <div class="col-12 col-lg-6 navigation">
-      <nav id="bottom-news">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+          if(isset($_GET{'page'})) {
+            $pagePrevOffset = (int)$_GET{'page'};
+            $pageNextOffset = (int)$_GET{'page'};
+          } else {
+            $pageNextOffset = 0;
+            $pagePrevOffset = 1;
+          }
+        ?>
+        <li class="page-item">
+          <a class="page-link" href="service.php?page=1" aria-label="Previous">
+            <span aria-hidden="true"><i class="fas fa-angle-double-left"></i></span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="service.php?page=<?php 
+          if (!isset($_GET{'page'})) {
+            echo $pagePrevOffset;
+          } else {
+            if($pagePrevOffset > 1) {
+              echo --$pagePrevOffset;
+            } else if ($pagePrevOffset === 1){
+              echo $pagePrevOffset;
+            }
+          }
+          ?>" aria-label="Previous">
+            <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+          </a>
+        </li>
+        <?php 
+          $countPage = 0;
+          while($countPage < $pageTotal) {
+            $countPage++;
+        ?>
+            <li class="page-item">
+              <a class="page-link" href="service.php?page=<?php echo $countPage; ?>"><?php echo $countPage; ?></a>
+            </li>
+        <?php } ?>
+        
+        <li class="page-item">
+          <a class="page-link" href="service.php?page=<?php 
+              if (!isset($_GET{'page'})) {
+                echo $pageNextOffset += 2;
+              } else {   
+                if($pageNextOffset < $pageTotal) {
+                  echo ++$pageNextOffset;
+                } else if ($pageNextOffset === $pageTotal) {
+                  echo $pageNextOffset;
+                }
+              }
+          ?>" aria-label="Next">
+            <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="service.php?page=<?php echo $pageTotal; ?>"  aria-label="Next">
+            <span aria-hidden="true"><i class="fas fa-angle-double-right"></i></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
   <footer id="footer" class="container-fluid">

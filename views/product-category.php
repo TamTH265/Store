@@ -64,18 +64,18 @@
               die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT item,addresses FROM Menu WHERE parent_item_id = " . $row["id"];
+            $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = " . $row["id"];
             $result = $conn->query($sql);        
         ?>       
             <li <?php if ($result->num_rows > 0) { echo "class='sub-menu'"; }?>>
-              <a href="<?php echo  $row["addresses"];?>.php"><?php echo $row["item"]; ?></a>
+              <a href="<?php echo $row["addresses"]; ?>.php"><?php echo $row["item"]; ?></a>
               <ul>
                 <?php 
                   if ($result->num_rows > 0) { 
                     while($r = $result->fetch_assoc()) {
                 ?>                 
                       <li>
-                        <a href="<?php echo  $r["addresses"];?>.php">
+                        <a href="product-category.php?categoryId=<?php echo $r["id"]; ?>">
                           <?php echo $r["item"]; ?>
                         </a>
                       </li>                  
@@ -106,14 +106,14 @@
                 die("Connection failed: " . $conn->connect_error);
             }
             
-            $sql = "SELECT item, addresses FROM Menu WHERE parent_item_id = 2";
+            $sql = "SELECT id, item, addresses FROM Menu WHERE parent_item_id = 2";
             $result = $conn->query($sql);
            
             if ($result->num_rows > 0) { 
               while($row = $result->fetch_assoc()) {
           ?>
                 <li>
-                  <a href="<?php echo  $row["addresses"];?>.php">
+                  <a href="product-category.php?categoryId=<?php echo  $row["id"];?>">
                     <span class="fas fa-angle-right"></span>
                     <?php echo $row["item"]; ?>
                   </a>
@@ -129,100 +129,165 @@
 
     <div class="main-content container">
       <h3>
-        <span class="category-title">Vách ngăn nhẹ khu vệ sinh</span>
+        <?php
+          if (isset($_REQUEST["categoryId"])) {
+            $categoryId = (int)$_REQUEST["categoryId"];
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            mysqli_set_charset($conn, 'UTF8');
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            $sql = "SELECT item FROM menu where id=" . $categoryId;
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+              $row = $result->fetch_assoc();
+        ?>
+        <span class="category-title"><?php echo $row['item']; ?></span>
+        <?php
+            }
+          }
+        ?>
       </h3>
       <div class="row">
-        <div class="col col-lg-4 col-sm-6 col-12 col-left st-col">
+      <?php          
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        mysqli_set_charset($conn, 'UTF8');
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $numOfProductsPerPage = 9;
+        
+        $sql = "SELECT COUNT(id) FROM products where category_id=" . $categoryId;
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+          $productsTotal = (int)$row["COUNT(id)"];
+        }
+
+        if(isset($_GET{'page'})) {
+          $startPage = ($_GET{'page'} - 1) * $numOfProductsPerPage;
+          $endPage = $_GET{'page'} * $numOfProductsPerPage;
+        } else {
+          $startPage = 0;
+        }
+
+        $sql =  "SELECT id, title, imgAddress, content FROM products WHERE category_id=" . $categoryId . " LIMIT $startPage, $numOfProductsPerPage";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+          $checkIndexAtTwoColsState = 0;
+          $checkIndexAtThreeColState = 0;
+          $indexAtTwoColsState = "left";
+          $indexAtThreeColsState = "st";
+          while($row = $result->fetch_assoc()) {        
+            if ($checkIndexAtTwoColsState === 0) {
+              $indexAtTwoColsState = "left";
+              $checkIndexAtTwoColsState = 1;
+            } else {
+              $indexAtTwoColsState = "right";
+              $checkIndexAtTwoColsState = 0;
+            }
+
+            if ($checkIndexAtThreeColState === 0) {
+              $indexAtThreeColsState = "st";
+              $checkIndexAtThreeColState = 1;
+            } else if ($checkIndexAtThreeColState === 1) {
+              $indexAtThreeColsState = "nd";
+              $checkIndexAtThreeColState = 2;
+            } else {
+              $indexAtThreeColsState = "rd";
+              $checkIndexAtThreeColState = 0;
+            }
+      ?>   
+        <div class="col col-lg-4 col-sm-6 col-12 <?php echo $indexAtTwoColsState;?>-col <?php echo $indexAtThreeColsState; ?>-col">
           <div class="item" data-aos="fade-up">
             <span class="info">
               <span class="content">Content</span>
               <button><a href="#">Chi tiết</a></button>
             </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
+            <img src="<?php echo $row["imgAddress"]; ?>" alt="">
+            <span class="caption"><?php echo $row["title"]; ?></span>
           </div>
         </div>
-        <div class="col col-lg-4 col-sm-6 col-12 col-right nd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-sm-6 col-12 col-left rd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-sm-6 col-12 col-right st-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-sm-6 col-12 col-left nd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-sm-6 col-12 col-right rd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-sm-6 col-12 col-left st-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-sm-6 col-12 col-right nd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-sm-6 col-12 col-left rd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="../images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
+      <?php
+            }
+          }
+      ?>
       </div>
+
+      <nav aria-label="navigation example">
+        <ul class="pagination justify-content-center">
+          <?php 
+            $pageTotal = $productsTotal/9;
+            if ($pageTotal !== (int)$pageTotal) {
+              $pageTotal = (int)$pageTotal + 1;
+            } else {
+              $pageTotal = $pageTotal;
+            }
+
+            if(isset($_GET{'page'})) {
+              $pagePrevOffset = (int)$_GET{'page'};
+              $pageNextOffset = (int)$_GET{'page'};
+            } else {
+              $pageNextOffset = 0;
+              $pagePrevOffset = 1;
+            }
+          ?>
+          <li class="page-item">
+            <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=1" aria-label="Previous">
+              <span aria-hidden="true"><i class="fas fa-angle-double-left"></i></span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php 
+            if (!isset($_GET{'page'})) {
+              echo $pagePrevOffset;
+            } else {
+              if($pagePrevOffset > 1) {
+                echo --$pagePrevOffset;
+              } else if ($pagePrevOffset === 1){
+                echo $pagePrevOffset;
+              }
+            }
+            ?>" aria-label="Previous">
+              <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+            </a>
+          </li>
+          <?php 
+            $countPage = 0;
+            while($countPage < $pageTotal) {
+              $countPage++;
+          ?>
+              <li class="page-item">
+                <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php echo $countPage; ?>"><?php echo $countPage; ?></a>
+              </li>
+          <?php } ?>
+          
+          <li class="page-item">
+            <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php 
+                if (!isset($_GET{'page'})) {
+                  echo $pageNextOffset += 2;
+                } else {   
+                  if($pageNextOffset < $pageTotal) {
+                    echo ++$pageNextOffset;
+                  } else if ($pageNextOffset === $pageTotal) {
+                    echo $pageNextOffset;
+                  }
+                }
+            ?>" aria-label="Next">
+              <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php echo $pageTotal; ?>"  aria-label="Next">
+              <span aria-hidden="true"><i class="fas fa-angle-double-right"></i></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 

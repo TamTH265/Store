@@ -12,6 +12,8 @@
   line-height: 60px;
   text-align: center;
   color: #000;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .main-content .col .item {

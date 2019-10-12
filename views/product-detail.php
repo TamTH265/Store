@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../styles/navbar.css">
   <link rel="stylesheet" href="../styles/footer.css">
-  <link rel="stylesheet" href="../styles/news-detail.css">
+  <link rel="stylesheet" href="../styles/product-detail.css">
 </head>
 
 <body>
@@ -97,14 +97,14 @@
     <div class="row">
       <div class="row-top col-lg-9">
       <?php
-        if (isset($_REQUEST['id'])) {
+        if (isset($_REQUEST['id']) && isset($_REQUEST['categoryId'])) {
           $conn = new mysqli($servername, $username, $password, $dbname);
           mysqli_set_charset($conn, 'UTF8');
           if ($conn->connect_error) {
               die("Connection failed: " . $conn->connect_error);
           }
           
-          $sql = "SELECT title, content FROM news WHERE id=" . $_REQUEST['id'];
+          $sql = "SELECT title, content FROM products WHERE id=" . $_REQUEST['id'] . " AND category_id=". $_REQUEST['categoryId'];
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -166,7 +166,7 @@
     </div>
 
   </div>
-  <!-- --------------------------END------------------ -->
+
   <footer id="footer" class="container-fluid">
     <div class="row footer-interface">
       <div class="footer-left col col-lg-6 col-sm-12 col-12">
@@ -216,9 +216,6 @@
       </div>
     </div>
   </footer>
-
-
-
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

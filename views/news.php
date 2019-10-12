@@ -260,7 +260,7 @@
             <a href="news-detail.html" class="shock-news-title">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</a>
           </div>
 
-          <div class="shock-news">
+          <div class="shock-news shock-news-bottom">
             <div class="media-img">
               <a href="news-detail.html"><img src="../images/carousel-image-4.jpg" class="align-self-start mr-3"
                   alt="..."></a>

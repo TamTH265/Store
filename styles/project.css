@@ -3,13 +3,20 @@
 }
 
 .main-content h3 .category-title {
+  border-bottom: 3px solid #ff7c00;
+  border-left: 2px solid #e4e4e4;
+  border-right: 2px solid #e4e4e4;
+  border-top: 2px solid #e4e4e4;
+  background-color: #f7f7f7;
   display: inline-block;
+  padding: 0 60px;
+  font-size: 28px;
+  text-transform: uppercase;
+  height: 60px;
+  line-height: 60px;
   text-align: center;
-  font-weight: 600;
-  padding: 0 4%;
-  background: linear-gradient( 90deg, rgba(0, 48, 135, 0.7), rgba(0, 156, 222, 0.7));
-  border-radius: 8px;
-  outline: 2px solid #0055ff;
+  color: #000;
+  margin: 0 auto;
 }
 
 .main-content .row {
@@ -28,6 +35,7 @@
   width: 100%;
   height: 100%;
   transition: all 0.6s ease-in-out;
+  cursor: pointer;
 }
 
 .main-content .col .item .caption {
@@ -46,13 +54,11 @@
 
 @media screen and (max-width: 575px) {
   .main-content {
-    padding-top: 100px;
+    padding-top: 80px;
   }
   .main-content h3 .category-title {
-    height: 15vw;
-    line-height: 15vw;
-    outline-offset: 8px;
-    font-size: 6vw;
+    padding: 0 20px;
+    font-size: 22px;
   }
   .main-content .row {
     padding-top: 30px;
@@ -75,13 +81,7 @@
 
 @media screen and (min-width: 576px) {
   .main-content {
-    padding-top: 100px;
-  }
-  .main-content h3 .category-title {
-    height: 70px;
-    line-height: 70px;
-    outline-offset: 8px;
-    font-size: 40px;
+    padding-top: 80px;
   }
   .main-content .row {
     padding-top: 30px;
@@ -112,12 +112,6 @@
   .main-content {
     padding-top: 100px;
   }
-  .main-content h3 .category-title {
-    height: 70px;
-    line-height: 70px;
-    outline-offset: 8px;
-    font-size: 40px;
-  }
   .main-content .row {
     padding-top: 30px;
   }
@@ -145,13 +139,7 @@
 
 @media screen and (min-width: 992px) {
   .main-content {
-    padding-top: 120px;
-  }
-  .main-content h3 .category-title {
-    height: 70px;
-    line-height: 70px;
-    outline-offset: 8px;
-    font-size: 40px;
+    padding-top: 90px;
   }
   .main-content .row {
     padding-top: 30px;

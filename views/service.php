@@ -96,7 +96,7 @@
   </header>
 
   <div class="container main-content">
-    <h3><span class="category-title">Các dự án đã thực hiện</span></h3>
+    <h3><span class="category-title">Dịch vụ</span></h3>
     <div class="row">
     <?php 
       $conn = new mysqli($servername, $username, $password, $dbname);

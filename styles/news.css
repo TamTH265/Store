@@ -3,8 +3,8 @@ body {
 }
 
 .container {
-  margin-top: 75px;
-  margin-bottom: 20px;
+  padding-top: 75px;
+  padding-bottom: 20px;
   overflow: hidden;
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 .row #bottom-news .pagination .page-item .page-link {
-  color: black;
+  color: #000;
 }
 
 .row #bottom-news .pagination .page-item .page-link:hover {
@@ -33,15 +33,14 @@ body {
 
 .container .row .panel-right-down {
   margin-top: 20px;
-  background-color: white;
+  background-color: #fff;
   padding-top: 15px;
 }
 
 .container .row .panel-right-down .shock-news {
-  margin-top: 20px;
-  margin-left: 10px;
   display: flex;
   flex-flow: row wrap;
+  padding: 14px 0;
 }
 
 .container .row .panel-right-down .shock-news-bottom {
@@ -49,22 +48,27 @@ body {
 }
 
 .container .row .panel-right-down .shock-news .shock-news-title {
-  width: 120px;
+  width: 60%;
   text-decoration: none;
   font-size: 12px;
-  float: left;
   color: black;
-  margin-bottom: 30px;
+  transition: 0.4s;
+  padding-left: 5px;
 }
 
 .container .row .panel-right-down .shock-news .shock-news-title:hover {
-  transition: 0.4s;
   color: #ff7c00;
 }
 
+.container .row .panel-right-down .shock-news .media-img {
+  width: 40%;
+  box-sizing: border-box;
+}
+
 .container .row .panel-right-down .shock-news img {
-  width: 100px;
-  float: left;
+  display: block;
+  width: 90%;
+  margin-left: 10%;
 }
 
 .container .row .panel-right-top {
@@ -74,10 +78,9 @@ body {
 
 .container .row .panel .panel-heading {
   border-left: 3px solid #ff7c00;
-  margin-left: 5%;
+  margin-left: 4%;
   padding: 0 10px 0 10px;
   font-size: 20px;
-  color: black;
   font-weight: bold;
 }
 
@@ -91,21 +94,19 @@ body {
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  color: black;
-  margin-bottom: 20px;
 }
 
 .container .row .panel .panel-shock {
   border-left: 3px solid #ff7c00;
-  margin-left: 5%;
   padding: 0 10px 0 10px;
+  margin-left: 4%;
   font-size: 20px;
-  color: black;
+  color: #000;
   font-weight: bold;
 }
 
 .container .row .panel .panel-body {
-  padding: 13px 10px 10px 15px;
+  padding: 13px 10px 10px 10px;
   font-size: 18px;
 }
 
@@ -123,6 +124,7 @@ body {
   color: black;
   text-decoration: none;
   font-size: 19px;
+  transition: .4s;
 }
 
 .container .row .panel .panel-link-div span {
@@ -151,11 +153,11 @@ body {
   font-weight: bold;
   display: inline-block;
   font-size: 15px;
+  transition: 0.3s;
 }
 
 .media .media-body .media-body-link h5:hover {
   color: #ff7c00;
-  transition: 0.3s;
 }
 
 .container .row .panel .panel-body-left .media {
@@ -234,59 +236,4 @@ body {
 
 .container .row .panel-right-down .shock-news .media-img:hover+.shock-news-title {
   color: #ff7c00;
-}
-
-@media only screen and (max-width: 991px) {
-  .container {
-    margin-top: 0;
-    padding-top: 70px;
-  }
-  .container .row .panel .panel-body-left .media {
-    height: auto;
-    padding-bottom: 20px;
-  }
-  .container .row .panel .panel-body-left .media .media-img {
-    width: 100%;
-    height: 180px;
-  }
-  .container .row .panel .panel-body-left .media .media-img a {
-    margin: 0 auto;
-    width: 50%;
-    padding: 0;
-  }
-  .container .row .panel .panel-body-left .media .media-img a img {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-  }
-  .media .media-body {
-    width: 100%;
-  }
-  .media .media-body .media-body-link {
-    padding-top: 10px;
-    display: block;
-    text-align: center;
-  }
-  .media .media-body .news-date {
-    text-align: right;
-    padding-bottom: 10px;
-  }
-  .container .row .panel .panel-body-left {
-    width: 100%;
-  }
-  .container .row .panel .panel-link-div {
-    padding-left: 20px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .container .row .panel .panel-body-left .media .media-img a {
-    width: 60%;
-  }
-}
-
-@media only screen and (max-width: 575px) {
-  .container .row .panel .panel-body-left .media .media-img a {
-    width: 70%;
-  }
 }

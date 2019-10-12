@@ -115,7 +115,7 @@
       </div>
       <div class="col col-lg-9 col-12 right-container">
         <div id="title">
-          <h3>Bang mau</h3>
+          <h3>Bảng màu</h3>
         </div>
         <div>
         <?php 

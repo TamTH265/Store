@@ -107,13 +107,27 @@
           <p class="caption-text"></p>
         </div>
         <?php 
-          for ($i = 1; $i < 5; $i++) {
+          $conn = new mysqli($servername, $username, $password, $dbname);
+          mysqli_set_charset($conn, 'UTF8');
+          if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+          }
+          
+          $sql = "SELECT id, title, imgAddress, category_id FROM products WHERE hot_item=1";
+          $result = $conn->query($sql);
+         
+          if ($result->num_rows > 0) { 
+            while($row = $result->fetch_assoc()) {
         ?>
           <div class="image-holder">
-            <img src="../images/carousel-image-<?php echo $i;?>.jpg" alt="">
-            <p class="caption-text">Caption Text-0<?php echo $i;?></p>
+            <img src="<?php echo $row["imgAddress"]; ?>" alt="">
+            <p class="caption-text"><?php echo $row["title"]; ?></p>
           </div>
-        <?php }?>
+        <?php 
+            } 
+          }
+          $conn->close();      
+        ?>
       </div>
       <div class="dots-container"></div>
     </div>

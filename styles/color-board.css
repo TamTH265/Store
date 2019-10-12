@@ -11,7 +11,6 @@ body {
   border-top: 3px solid #dbd9d9;
 }
 
-
 .left-container #sidebar {
   border-left: 3px solid #ff7c00;
   padding: 0 10px 0 10px;
@@ -19,7 +18,6 @@ body {
   font-size: 25px;
   color: black;
   font-weight: bold;
-
 }
 
 #title {
@@ -34,6 +32,7 @@ body {
   text-align: center;
   color: black;
   margin-bottom: 20px;
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.6);
 }
 
 .right-container-side {
@@ -55,7 +54,6 @@ body {
   width: 100%;
   height: 70%;
   overflow: hidden;
-
 }
 
 .right-container-side .img img {
@@ -79,7 +77,6 @@ body {
   font-size: 0.8vw;
   font-weight: bold;
 }
-
 
 .right-container-side .title-img {
   padding: 8px 5px 5px 5px;
@@ -111,7 +108,6 @@ body {
 
 .left-container .panel-link-div {
   margin-top: 15px;
-
 }
 
 .left-container .panel-link:hover {
@@ -139,25 +135,19 @@ body {
     margin-top: 0px;
     padding-top: 75px;
   }
-
   .left-container {
     margin-right: 500px;
     margin-bottom: 50px;
-
   }
-
   .right-container-side .title-img a:hover {
     font-size: 1.2vw;
   }
-
   .right-container-side .title-img a {
     font-size: 1.2vw;
   }
-
   .right-container-side .img:hover+.title-img a {
     font-size: 1.2vw;
   }
-
   .right-container-side .title-img a {
     font-size: 1.2vw;
   }
@@ -168,16 +158,13 @@ body {
     margin-top: 0px;
     padding-top: 75px;
   }
-
   .left-container {
     margin-right: 350px;
   }
-
   .right-container-side {
     margin: 20px 2px 20px 2px;
     height: 120px;
   }
-
   .right-container-side .title-img {
     padding-top: 1px;
   }
@@ -188,31 +175,25 @@ body {
     margin-right: 60%;
     ;
   }
-
   .right-container-side {
     height: 10%;
   }
-
   .right-container-side .title-img a:hover {
     font-size: 1.8vw;
     font-weight: bold;
   }
-
   .right-container-side .title-img a {
     font-size: 1.8vw;
   }
-
   .right-container-side .img:hover+.title-img a {
     font-size: 1.8vw;
   }
-
   .right-container-side .title-img a {
     font-size: 1.8vw;
   }
 }
 
 @media only screen and (max-width: 420px) {
-
   .left-container {
     margin-right: 40%;
   }

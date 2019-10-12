@@ -14,6 +14,7 @@
   color: #000;
   width: 50%;
   margin: 0 auto;
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.6);
 }
 
 .main-content .col .item {

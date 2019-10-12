@@ -183,7 +183,7 @@
           $pageTotal = $pageTotal;
         }
 
-        $sql =  "SELECT id, title, imgAddress, content FROM products WHERE category_id=" . $categoryId . " LIMIT $startPage, $numOfProductsPerPage";
+        $sql =  "SELECT id, title, imgAddress, content, category_id FROM products WHERE category_id=" . $categoryId . " LIMIT $startPage, $numOfProductsPerPage";
         $result = $conn->query($sql);
         
         if ($result->num_rows > 0) {
@@ -215,7 +215,7 @@
           <div class="item" data-aos="fade-up">
             <span class="info">
               <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
+              <button><a href="product-detail.php?id=<?php echo $row["id"]; ?>&categoryId=<?php echo $row["category_id"]; ?>">Chi tiết</a></button>
             </span>
             <img src="<?php echo $row["imgAddress"]; ?>" alt="">
             <span class="caption"><?php echo $row["title"]; ?></span>

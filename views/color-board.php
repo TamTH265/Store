@@ -46,7 +46,7 @@
               die("Connection failed: " . $conn->connect_error);
           }
           
-          $sql = "SELECT id, item, addresses FROM Menu WHERE parent_item_id = 0";
+          $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = 0";
           $result = $conn->query($sql);
           $listParent = array();
 
@@ -64,18 +64,18 @@
               die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT item, addresses FROM Menu WHERE parent_item_id = " . $row["id"];
+            $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = " . $row["id"];
             $result = $conn->query($sql);        
         ?>       
             <li <?php if ($result->num_rows > 0) { echo "class='sub-menu'"; }?>>
-              <a href="<?php echo  $row["addresses"];?>.php"><?php echo $row["item"]; ?></a>
+              <a href="<?php echo $row["addresses"]; ?>.php"><?php echo $row["item"]; ?></a>
               <ul>
                 <?php 
                   if ($result->num_rows > 0) { 
                     while($r = $result->fetch_assoc()) {
                 ?>                 
                       <li>
-                        <a href="<?php echo  $row["addresses"];?>.php">
+                        <a href="product-category.php?categoryId=<?php echo $r["id"]; ?>">
                           <?php echo $r["item"]; ?>
                         </a>
                       </li>                  

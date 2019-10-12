@@ -121,8 +121,8 @@
           <?php
               }
               $conn->close();
-            }         
-          ?>       
+            }        
+          ?>     
         </ul>
       </div>
     </div>
@@ -151,13 +151,15 @@
         ?>
       </h3>
       <div class="row">
-      <?php          
+      <?php       
+      if (isset($_REQUEST["categoryId"])) {   
+        $categoryId = (int)$_REQUEST["categoryId"];
         $conn = new mysqli($servername, $username, $password, $dbname);
         mysqli_set_charset($conn, 'UTF8');
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        $numOfProductsPerPage = 9;
+        $numOfProductsPerPage = 6;
         
         $sql = "SELECT COUNT(id) FROM products where category_id=" . $categoryId;
         $result = $conn->query($sql);
@@ -172,6 +174,13 @@
           $endPage = $_GET{'page'} * $numOfProductsPerPage;
         } else {
           $startPage = 0;
+        }
+
+        $pageTotal = $productsTotal/6;
+        if ($pageTotal !== (int)$pageTotal) {
+          $pageTotal = (int)$pageTotal + 1;
+        } else {
+          $pageTotal = $pageTotal;
         }
 
         $sql =  "SELECT id, title, imgAddress, content FROM products WHERE category_id=" . $categoryId . " LIMIT $startPage, $numOfProductsPerPage";
@@ -214,78 +223,79 @@
         </div>
       <?php
             }
+          } else {
+      ?>
+        <div style="width: 100%; color: #f00; text-align: center; font-size: 28px; font-weight: 500;">Sản phẩm tạm hết hàng!</div>
+      <?php
           }
+        }
       ?>
       </div>
 
       <nav aria-label="navigation example">
         <ul class="pagination justify-content-center">
           <?php 
-            $pageTotal = $productsTotal/9;
-            if ($pageTotal !== (int)$pageTotal) {
-              $pageTotal = (int)$pageTotal + 1;
-            } else {
-              $pageTotal = $pageTotal;
-            }
-
-            if(isset($_GET{'page'})) {
-              $pagePrevOffset = (int)$_GET{'page'};
-              $pageNextOffset = (int)$_GET{'page'};
-            } else {
-              $pageNextOffset = 0;
-              $pagePrevOffset = 1;
-            }
-          ?>
-          <li class="page-item">
-            <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=1" aria-label="Previous">
-              <span aria-hidden="true"><i class="fas fa-angle-double-left"></i></span>
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php 
-            if (!isset($_GET{'page'})) {
-              echo $pagePrevOffset;
-            } else {
-              if($pagePrevOffset > 1) {
-                echo --$pagePrevOffset;
-              } else if ($pagePrevOffset === 1){
-                echo $pagePrevOffset;
+          if (isset($_REQUEST["categoryId"])) {
+            if ($pageTotal > 0) {
+              if(isset($_GET{'page'})) {
+                $pagePrevOffset = (int)$_GET{'page'};
+                $pageNextOffset = (int)$_GET{'page'};
+              } else {
+                $pageNextOffset = 0;
+                $pagePrevOffset = 1;
               }
-            }
-            ?>" aria-label="Previous">
-              <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
-            </a>
-          </li>
-          <?php 
-            $countPage = 0;
-            while($countPage < $pageTotal) {
-              $countPage++;
-          ?>
-              <li class="page-item">
-                <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php echo $countPage; ?>"><?php echo $countPage; ?></a>
-              </li>
-          <?php } ?>
-          
-          <li class="page-item">
-            <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php 
-                if (!isset($_GET{'page'})) {
-                  echo $pageNextOffset += 2;
-                } else {   
-                  if($pageNextOffset < $pageTotal) {
-                    echo ++$pageNextOffset;
-                  } else if ($pageNextOffset === $pageTotal) {
-                    echo $pageNextOffset;
-                  }
+            ?>
+            <li class="page-item">
+              <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=1" aria-label="Previous">
+                <span aria-hidden="true"><i class="fas fa-angle-double-left"></i></span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php 
+              if (!isset($_GET{'page'})) {
+                echo $pagePrevOffset;
+              } else {
+                if($pagePrevOffset > 1) {
+                  echo --$pagePrevOffset;
+                } else if ($pagePrevOffset === 1){
+                  echo $pagePrevOffset;
                 }
-            ?>" aria-label="Next">
-              <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php echo $pageTotal; ?>"  aria-label="Next">
-              <span aria-hidden="true"><i class="fas fa-angle-double-right"></i></span>
-            </a>
-          </li>
+              }
+              ?>" aria-label="Previous">
+                <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+              </a>
+            </li>
+            <?php 
+              $countPage = 0;
+              while($countPage < $pageTotal) {
+                $countPage++;
+            ?>
+                <li class="page-item">
+                  <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php echo $countPage; ?>"><?php echo $countPage; ?></a>
+                </li>
+            <?php }?>
+            
+            <li class="page-item">
+              <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php 
+                  if (!isset($_GET{'page'})) {
+                    echo $pageNextOffset += 2;
+                  } else {   
+                    if($pageNextOffset < $pageTotal) {
+                      echo ++$pageNextOffset;
+                    } else if ($pageNextOffset === $pageTotal) {
+                      echo $pageNextOffset;
+                    }
+                  }
+              ?>" aria-label="Next">
+                <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="product-category.php?categoryId=<?php echo $categoryId; ?>&page=<?php echo $pageTotal; ?>"  aria-label="Next">
+                <span aria-hidden="true"><i class="fas fa-angle-double-right"></i></span>
+              </a>
+            </li>
+          <?php }} ?>
         </ul>
       </nav>
     </div>

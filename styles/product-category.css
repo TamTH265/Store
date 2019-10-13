@@ -49,6 +49,7 @@
   position: relative;
   transition: 0.5s;
   display: block;
+  color: #fff;
 }
 
 .sidebar .menu-container ul li a span {
@@ -227,7 +228,6 @@
     text-align: center;
     display: block;
     position: relative;
-    font-size: 18px;
   }
   .sidebar .menu-container ul li a:hover {
     padding: 0;

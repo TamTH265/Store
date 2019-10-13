@@ -103,10 +103,7 @@
       <div class="slider-container">
         <span class="left-arrow"><i class="fas fa-angle-left"></i></span>
         <span class="right-arrow"><i class="fas fa-angle-right"></i></span>
-        <div class="caption-holder">
-          <p class="caption-text"></p>
-        </div>
-        <?php 
+        <?php
           $conn = new mysqli($servername, $username, $password, $dbname);
           mysqli_set_charset($conn, 'UTF8');
           if ($conn->connect_error) {
@@ -117,12 +114,18 @@
           $result = $conn->query($sql);
          
           if ($result->num_rows > 0) { 
+        ?>
+            <div class="caption-holder">
+              <p><a href="" class="caption-text"></a></p>
+            </div>
+        <?php      
+            
             while($row = $result->fetch_assoc()) {
         ?>
-          <div class="image-holder">
-            <img src="<?php echo $row["imgAddress"]; ?>" alt="">
-            <p class="caption-text"><?php echo $row["title"]; ?></p>
-          </div>
+              <div class="image-holder">
+                <img src="<?php echo $row["imgAddress"]; ?>" alt="">
+                <p><a class="caption-text" href="product-detail.php?id=<?php echo $row["id"]; ?>&categoryId=<?php echo $row["category_id"]; ?>"><?php echo $row["title"]; ?></a></p>
+              </div>
         <?php 
             } 
           }

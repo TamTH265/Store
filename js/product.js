@@ -8,10 +8,7 @@ let sliderIndex = 0;
 
 (function initSlider() {
   slides[sliderIndex].style.opacity = 1;
-
-  captionText.innerText = slides[sliderIndex].querySelector(
-    '.caption-text'
-  ).innerText;
+  captionText.innerText = slides[sliderIndex].querySelector('.caption-text').innerText;
 
   for (let i = 0; i < slides.length; i++) {
     const dot = document.createElement('span');
@@ -22,7 +19,7 @@ let sliderIndex = 0;
   }
 
   dots[sliderIndex].classList.add('active');
-})();
+}());
 
 function moveSlide(n) {
   let index = n;
@@ -65,9 +62,8 @@ function moveSlide(n) {
 
   captionText.style.display = 'none';
   captionText.className = `caption-text ${slideTextClass}`;
-  captionText.innerText = slides[index].querySelector(
-    '.caption-text'
-  ).innerText;
+  captionText.href = slides[index].querySelector('.caption-text').getAttribute('href');
+  captionText.innerText = slides[index].querySelector('.caption-text').innerText;
   captionText.style.display = 'block';
 }
 
@@ -75,17 +71,5 @@ function plusSlides(n) {
   moveSlide(sliderIndex + n);
 }
 
-// function setTimer(check) {
-//   let timer = null;
-//   if (check === 1) {
-//     clearInterval(timer);
-//   }
-//   timer = setInterval(() => {
-//     plusSlides(1);
-//   }, 3000);
-// }
-// setTimer();
-
 leftArrow.addEventListener('click', plusSlides.bind(null, -1));
 rightArrow.addEventListener('click', plusSlides.bind(null, 1));
-// rightArrow.addEventListener('click', setTimer.bind(null, 1));

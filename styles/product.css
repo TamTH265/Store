@@ -108,7 +108,16 @@
   overflow: hidden;
 }
 
-.slider-container>.caption-holder>.caption-text {
+.slider-container>.caption-holder a {
+  color: #fff;
+  display: block;
+}
+
+.slider-container>.caption-holder a:hover {
+  text-decoration: none;
+}
+
+.slider-container>.caption-holder .caption-text {
   margin: 0;
 }
 

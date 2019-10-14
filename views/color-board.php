@@ -18,13 +18,8 @@
 </head>
 
 <body>
-  <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "StoreManager";
-  ?>
- <div id="banner">
+  <?php require('./DBConnect.php'); ?>
+  <div id="banner">
     <img src="../images/banner.jpg" alt="">
     <div>
       <span>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</span>
@@ -40,11 +35,8 @@
     <nav>
       <ul>
         <?php 
-          $conn = new mysqli($servername, $username, $password, $dbname);
-          mysqli_set_charset($conn, 'UTF8');
-          if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-          }
+          $db = new DBConnect();
+          $conn = $db->connect();
           
           $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = 0";
           $result = $conn->query($sql);
@@ -58,11 +50,8 @@
           $conn->close();
 
           foreach($listParent as $row) {
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            mysqli_set_charset($conn, 'UTF8');
-            if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-            }
+            $db = new DBConnect();
+            $conn = $db->connect();
 
             $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = " . $row["id"];
             $result = $conn->query($sql);        
@@ -119,11 +108,8 @@
         </div>
         <div>
         <?php 
-          $conn = new mysqli($servername, $username, $password, $dbname);
-          mysqli_set_charset($conn, 'UTF8');
-          if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-          }
+          $db = new DBConnect();
+          $conn = $db->connect();
           
           $sql = "SELECT id, color FROM Color WHERE parent_color_id = 0";
           $result = $conn->query($sql);
@@ -139,11 +125,8 @@
           $colorCategory = array("compact", "vango", "tron");
 
           foreach($listParent as $row) {
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            mysqli_set_charset($conn, 'UTF8');
-            if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-            }
+            $db = new DBConnect();
+            $conn = $db->connect();
             
             $sql = "SELECT color FROM Color WHERE parent_color_id = " . $row["id"];
             $result = $conn->query($sql);   

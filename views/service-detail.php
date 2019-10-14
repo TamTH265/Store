@@ -18,13 +18,7 @@
 </head>
 
 <body>
-  <!-- -------------Navbar------------- -->
-  <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "StoreManager";
-?>
+  <?php require('./DBConnect.php'); ?>
   <div id="banner">
     <img src="../images/banner.jpg" alt="">
     <div>
@@ -41,11 +35,8 @@
     <nav>
       <ul>
         <?php 
-          $conn = new mysqli($servername, $username, $password, $dbname);
-          mysqli_set_charset($conn, 'UTF8');
-          if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-          }
+          $db = new DBConnect();
+          $conn = $db->connect();
           
           $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = 0";
           $result = $conn->query($sql);
@@ -59,11 +50,8 @@
           $conn->close();
 
           foreach($listParent as $row) {
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            mysqli_set_charset($conn, 'UTF8');
-            if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-            }
+            $db = new DBConnect();
+            $conn = $db->connect();
 
             $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = " . $row["id"];
             $result = $conn->query($sql);        
@@ -99,11 +87,8 @@
     <div class="row">
       <?php 
         if (isset($_REQUEST['id'])) {
-          $conn = new mysqli($servername, $username, $password, $dbname);
-          mysqli_set_charset($conn, 'UTF8');
-          if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-          }
+          $db = new DBConnect();
+          $conn = $db->connect();
           
           $sql = "SELECT id, title, content FROM services WHERE id=" . $_REQUEST['id'];
           $result = $conn->query($sql);

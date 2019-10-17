@@ -9,17 +9,18 @@
   <script src="https://use.fontawesome.com/375cd7e549.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/all.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../styles/navbar.css">
-  <link rel="stylesheet" href="../styles/footer.css">
-  <link rel="stylesheet" href="../styles/news-detail.css">
+  <link rel="stylesheet" href="./styles/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./styles/navbar.css">
+  <link rel="stylesheet" href="./styles/footer.css">
+  <link rel="stylesheet" href="./styles/service-detail.css">
 </head>
 
 <body>
   <?php require('./DBConnect.php'); ?>
   <div id="banner">
-    <img src="../images/banner.jpg" alt="">
+    <img src="./images/banner.jpg" alt="">
     <div>
       <span>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</span>
       <span>Niềm tin và sự phát triển bền vững</span>
@@ -28,7 +29,7 @@
   <header>
     <div class="logo">
       <a href="#">
-        <!-- <img src="../images/68675905_1156488254559070_6992010623911460864_n.png" alt=""> -->
+        <!-- <img src="./images/68675905_1156488254559070_6992010623911460864_n.png" alt=""> -->
       </a>
     </div>
     <nav>
@@ -37,7 +38,7 @@
           $db = new DBConnect();
           $conn = $db->connect();
           
-          $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = 0";
+          $sql = "SELECT id, item, address FROM menu WHERE parent_item_id = 0";
           $result = $conn->query($sql);
           $listParent = array();
 
@@ -52,11 +53,11 @@
             $db = new DBConnect();
             $conn = $db->connect();
 
-            $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = " . $row["id"];
+            $sql = "SELECT id, item,address FROM menu WHERE parent_item_id = " . $row["id"];
             $result = $conn->query($sql);        
         ?>       
             <li <?php if ($result->num_rows > 0) { echo "class='sub-menu'"; }?>>
-              <a href="<?php echo $row["addresses"]; ?>.php"><?php echo $row["item"]; ?></a>
+              <a href="<?php echo $row["address"]; ?>.php"><?php echo $row["item"]; ?></a>
               <ul>
                 <?php 
                   if ($result->num_rows > 0) { 
@@ -84,75 +85,30 @@
 
   <div class="container">
     <div class="row">
-      <div class="row-top col-lg-9">
-      <?php
+      <?php 
         if (isset($_REQUEST['id'])) {
           $db = new DBConnect();
           $conn = $db->connect();
           
-          $sql = "SELECT title, content FROM news WHERE id=" . $_REQUEST['id'];
+          $sql = "SELECT id, title, content FROM services WHERE id=" . $_REQUEST['id'];
           $result = $conn->query($sql);
+
           if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
       ?>
-            <div class="title">
-              <h5><?php echo $row['title']; ?></h5>
-            </div>
-            <div class="content">
-              <?php echo $row['content']; ?>
-            </div>
-        <?php 
+      <div class="col">
+        <div class="title">
+          <h5><?php echo $row['title']; ?></h5>
+        </div>
+        <div class="content"><?php echo $row['content']; ?></div>
+      </div>
+      <?php 
           }
-        }   
-        ?>
-      </div>
-      <div class="row-down col-lg-3">
-        <div class="panel panel-right-top">
-          <div class="panel-heading">CHỦ ĐỀ</div>
-          <div class="panel-body panel-link-div">
-            <span><i class="fas fa-angle-right"></i></span>
-            <a href="#" class="panel-link">Phần nội dung </a>
-          </div>
-          <div class="panel-body panel-link-div">
-            <span><i class="fas fa-angle-right"></i></span>
-            <a href="#" class="panel-link">Phần nội dung </a>
-          </div>
-          <div class="panel-body panel-link-div">
-            <span><i class="fas fa-angle-right"></i></span>
-            <a href="#" class="panel-link">Phần nội dung </a>
-          </div>
-        </div>
-
-        <div class="panel panel-right-down">
-          <div class="panel-heading-down">TIN NỔI BẬT</div>
-
-          <div class="shock-news shock-news-bottom">
-            <div class="media-img">
-              <a href="#"><img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="align-self-start mr-3" alt="..."></a>
-            </div>
-            <a href="#" class="shock-news-title">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</a>
-          </div>
-
-          <div class="shock-news shock-news-bottom">
-            <div class="media-img">
-              <a href="#"><img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="align-self-start mr-3" alt="..."></a>
-            </div>
-            <a href="#" class="shock-news-title">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</a>
-          </div>
-
-          <div class="shock-news shock-news-bottom">
-            <div class="media-img">
-              <a href="#"><img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="align-self-start mr-3" alt="..."></a>
-            </div>
-            <a href="#" class="shock-news-title">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</a>
-          </div>
-
-        </div>
-      </div>
+        }
+      ?>
     </div>
-
   </div>
-  <!-- --------------------------END------------------ -->
+
   <footer id="footer" class="container-fluid">
     <div class="row footer-interface">
       <div class="footer-left col col-lg-6 col-sm-12 col-12">
@@ -203,12 +159,14 @@
     </div>
   </footer>
 
-
-
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="../js/navbar.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="./js/navbar.js"></script>
+</body>
 </body>
 
 </html>

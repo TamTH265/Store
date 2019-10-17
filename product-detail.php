@@ -9,17 +9,17 @@
   <script src="https://use.fontawesome.com/375cd7e549.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/all.min.css">
+  <link rel="stylesheet" href="./styles/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../styles/navbar.css">
-  <link rel="stylesheet" href="../styles/footer.css">
-  <link rel="stylesheet" href="../styles/product-detail.css">
+  <link rel="stylesheet" href="./styles/navbar.css">
+  <link rel="stylesheet" href="./styles/footer.css">
+  <link rel="stylesheet" href="./styles/product-detail.css">
 </head>
 
 <body>
   <?php require('./DBConnect.php'); ?>
   <div id="banner">
-    <img src="../images/banner.jpg" alt="">
+    <img src="./images/banner.jpg" alt="">
     <div>
       <span>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</span>
       <span>Niềm tin và sự phát triển bền vững</span>
@@ -28,7 +28,7 @@
   <header>
     <div class="logo">
       <a href="#">
-        <!-- <img src="../images/68675905_1156488254559070_6992010623911460864_n.png" alt=""> -->
+        <!-- <img src="./images/68675905_1156488254559070_6992010623911460864_n.png" alt=""> -->
       </a>
     </div>
     <nav>
@@ -37,7 +37,7 @@
           $db = new DBConnect();
           $conn = $db->connect();
           
-          $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = 0";
+          $sql = "SELECT id, item, address FROM menu WHERE parent_item_id = 0";
           $result = $conn->query($sql);
           $listParent = array();
 
@@ -52,11 +52,11 @@
             $db = new DBConnect();
             $conn = $db->connect();
 
-            $sql = "SELECT id, item,addresses FROM Menu WHERE parent_item_id = " . $row["id"];
+            $sql = "SELECT id, item, address FROM menu WHERE parent_item_id = " . $row["id"];
             $result = $conn->query($sql);        
         ?>       
             <li <?php if ($result->num_rows > 0) { echo "class='sub-menu'"; }?>>
-              <a href="<?php echo $row["addresses"]; ?>.php"><?php echo $row["item"]; ?></a>
+              <a href="<?php echo $row["address"]; ?>.php"><?php echo $row["item"]; ?></a>
               <ul>
                 <?php 
                   if ($result->num_rows > 0) { 
@@ -205,7 +205,7 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="../js/navbar.js"></script>
+  <script src="./js/navbar.js"></script>
 </body>
 
 </html>

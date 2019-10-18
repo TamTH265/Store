@@ -14,7 +14,6 @@
 
         $sql = 'SELECT id, content FROM tbl';
         $result = $dbConn->query($sql);
-
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
     ?>

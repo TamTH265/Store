@@ -10,6 +10,14 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+    <?php
+        require 'Functions.php';
+        if (isset($_REQUEST['id'])) {
+            $objFunctions = new Functions();
+            $objFunctions->setId($_REQUEST['id']);
+            $item = $objFunctions->getItemById();
+        }
+    ?>
     <div class="container">
         <form action="" method="post" id="form">
             <div class="form-group">
@@ -26,11 +34,15 @@
             </div>
            <div class="form-group">
                 <label for="content">Content: </label>
-                <textarea name="editor" id="editor"></textarea>
+                <textarea name="editor" id="editor">
+                <?php
+                    echo isset($item[4]) ? $item[4] : '';
+                ?>
+                </textarea>
            </div>
             <div id="success-dialog" style="display: none;">Dữ liệu đã được lưu thành công!</div>
             <div id="fail-dialog" style="display: none;">Lưu dữ liệu thất bại!</div>
-            <button type="submit" class="btn btn-primary" id="create" name="create">Create</button>
+            <button type="submit" class="btn btn-primary" id="edit" name="edit">Lưu thông tin</button>
         </form> 
     </div>
 
@@ -39,15 +51,13 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
     <?php 
-        if (isset($_REQUEST['create'])) {
-            require 'Functions.php';
-            $objCreate = new Functions();
-            $objCreate->setTitle($_REQUEST['title']);
-            $objCreate->setImgAddress($_REQUEST['imgAddress']);
-            $objCreate->setPublicDate($_REQUEST['publicDate']);
-            $objCreate->setContent($_REQUEST['editor']);
+        if (isset($_REQUEST['edit'])) {
+            $objFunctions->setTitle($_REQUEST['title']);
+            $objFunctions->setImgAddress($_REQUEST['imgAddress']);
+            $objFunctions->setPublicDate($_REQUEST['publicDate']);
+            $objFunctions->setContent($_REQUEST['editor']);
             
-            if ($objCreate->create()) {
+            if ($objFunctions->update()) {
     ?>
                 <script>
                     $("#success-dialog").dialog({

@@ -66,22 +66,22 @@
         }
 
         public function getItemById() {
-            $sql = 'select id, content from tbl where id=?';
+            $sql = 'select id, title, imgAddress, publicDate, content from news where id=?';
             $stmt = $this->dbConn->prepare($sql);
             $stmt->bind_param('i', $this->id);
             if (!$stmt->execute()) {
                 return false;
             }
-            $stmt->bind_result($this->id, $this->content);
+            $stmt->bind_result($this->id, $this->title, $this->imgAddress, $this->publicDate, $this->content);
             $stmt->fetch();
-            $item = array($this->id, $this->content);
+            $item = array($this->id, $this->title, $this->imgAddress, $this->publicDate, $this->content);
             return $item;
         }
 
         public function update() {
-            $sql = 'update tbl set content=? where id=?';
+            $sql = 'update news set title=?, imgAddress=?, publicDate=?, content=? where id=?';
             $stmt = $this->dbConn->prepare($sql);
-            $stmt->bind_param('si', $this->content, $this->id);
+            $stmt->bind_param('ssssi', $this->title, $this->imgAddress, $this->publicDate, $this->content, $this->id);
             if (!$stmt->execute()) {
                 return false;
             }

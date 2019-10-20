@@ -142,25 +142,29 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="bottom-section-inner">
+
     <div class="bottom-section">
+      <div class="bottom-left-icons bottom-icons">
+        <span><img src="./images/investors/investor1.jpg" alt=""></span>
+        <span><img src="./images/investors/investor2.png" alt=""></span>
+        <span><img src="./images/investors/investor3.jpg" alt=""></span>
+        <span><img src="./images/investors/investor4.jpg" alt=""></span>
+        <span><img src="./images/investors/investor5.png" alt=""></span>
+      </div>
       <div class="bottom-info">
         <h1>Nhà thầu tiêu biểu</h1>
-
-        <p> Trong những năm qua, Hiệp Á đã cung cấp và chuyển giao rất nhiều sản phẩm chất lượng cao cho những đối tác
-          trong
-          nước và ngoài nước tại Việt Nam. Với nổ lực phát trển không ngừng cùng nhiều kinh nghiệm trong lĩnh vực cung
-          cấp
-          thi
-          công vách ngăn vệ sinh, sàn nâng kỹ thuật, Hiệp Á đã nhận được rất nhiều sự tin tưởng của các nhà đầu tư, các
-          đơn
-          vị
-          tư vấn thiết kế và các nhà thầu xây dựng trong và ngoài nước như : <strong>Coteccons, Hòa Bình, Phú Hưng Gia,
-            Thuận
-            Việt,
-            Toàn Phát Thịnh, Gia Thy, ACSC,...</strong> </p>
-
+        <p> Trong những năm qua, Hiệp Á đã cung cấp và chuyển giao rất nhiều sản phẩm chất lượng cao cho những đối tác trong
+            nước và ngoài nước tại Việt Nam. Với nổ lực phát trển không ngừng cùng nhiều kinh nghiệm trong lĩnh vực cung cấp 
+            thi công vách ngăn vệ sinh, sàn nâng kỹ thuật, Hiệp Á đã nhận được rất nhiều sự tin tưởng của các nhà đầu tư, các 
+            đơn vị tư vấn thiết kế và các nhà thầu xây dựng trong và ngoài nước như : <strong>Coteccons, Hòa Bình, Phú Hưng Gia,
+            Thuận Việt, Toàn Phát Thịnh, Gia Thy, ACSC,...</strong> </p>
+      </div>
+      <div class="bottom-right-icons bottom-icons">
+        <span><img src="./images/investors/investor6.png" alt=""></span>
+        <span><img src="./images/investors/investor7.png" alt=""></span>
+        <span><img src="./images/investors/investor8.png" alt=""></span>
+        <span><img src="./images/investors/investor9.jpg" alt=""></span>
+        <span><img src="./images/investors/investor10.jpg" alt=""></span>
       </div>
     </div>
   </div>

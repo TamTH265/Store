@@ -24,25 +24,39 @@
                 <label for="title">Title: </label>
                 <input class="form-control" id="title" type="text" name="title">
             </div>
-           <div class="form-group">
+            <div class="form-group">
                 <label for="imgAddress">Image Address: </label>
                 <input class="form-control" id="imgAddress" type="text" name="imgAddress">
-           </div>
-            <div class="form-group">
-                <label for="publicDate">Public Date: </label>
-                <input class="form-control" id="publicDate" type="text" name="publicDate">
             </div>
-           <div class="form-group">
+            <div class="form-group">
+                <label for="categoryId">Category</label>
+                <select class="form-control" id="categoryId" name="categoryId">
+                <?php
+                    $db = new DBConnect();
+                    $conn = $db->connect();
+                    $sql = "SELECT id, item FROM menu WHERE parent_item_id=2";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                ?> 
+                        <option value="<?php echo $row["id"]; ?>"><?php echo $row["item"]; ?></option>
+                <?php
+                        }
+                    }
+                    $conn->close();
+                ?>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="content">Content: </label>
                 <textarea name="editor" id="editor">
-                <?php
-                    echo isset($item[4]) ? $item[4] : '';
-                ?>
+                    <?php echo isset($item[3]) ? $item[3] : ''; ?>
                 </textarea>
-           </div>
+            </div>
             <div id="success-dialog" style="display: none;">Dữ liệu đã được lưu thành công!</div>
             <div id="fail-dialog" style="display: none;">Lưu dữ liệu thất bại!</div>
-            <button type="submit" class="btn btn-primary" id="update" name="update">Lưu thông tin</button>
+            <button type="submit" class="btn btn-primary" id="update" name="update">Update</button>
         </form> 
     </div>
 
@@ -54,7 +68,7 @@
         if (isset($_REQUEST['update'])) {
             $objFunctions->setTitle($_REQUEST['title']);
             $objFunctions->setImgAddress($_REQUEST['imgAddress']);
-            $objFunctions->setPublicDate($_REQUEST['publicDate']);
+            $objFunctions->setCategoryId($_REQUEST['categoryId']);
             $objFunctions->setContent($_REQUEST['editor']);
             
             if ($objFunctions->update()) {

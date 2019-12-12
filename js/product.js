@@ -6,6 +6,8 @@ const dotsContainer = document.getElementsByClassName('dots-container')[0];
 const dots = [];
 let sliderIndex = 0;
 
+captionText.href = slides[0].querySelector('.caption-text').getAttribute('href');
+
 (function initSlider() {
   slides[sliderIndex].style.opacity = 1;
   captionText.innerText = slides[sliderIndex].querySelector('.caption-text').innerText;
@@ -23,6 +25,7 @@ let sliderIndex = 0;
 
 function moveSlide(n) {
   let index = n;
+
   let slideTextClass = '';
   const moveSlideClass = {
     forCurrent: '',

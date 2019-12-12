@@ -5,23 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</title>
   <script src="https://use.fontawesome.com/375cd7e549.js"></script>
+  <link rel=icon href="../../images/brand-icon.png">
   <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles/all.min.css">
+  <link rel="stylesheet" href="../../styles/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="./styles/navbar.css">
-  <link rel="stylesheet" href="./styles/footer.css">
-  <link rel="stylesheet" href="./styles/aos.css">
-  <link rel="stylesheet" href="./styles/product.css">
+  <link rel="stylesheet" href="../../styles/navbar.css">
+  <link rel="stylesheet" href="../../styles/footer.css">
+  <link rel="stylesheet" href="../../styles/aos.css">
+  <link rel="stylesheet" href="../../styles/product.css">
 </head>
 
 <body>
-  <?php require('./DBConnect.php'); ?>
+  <?php require('DBConnect.php'); ?>
   <div id="banner">
-    <img src="./images/banner.jpg" alt="">
+    <img src="../../images/banner.jpg" alt="">
     <div>
       <span>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</span>
       <span>Niềm tin và sự phát triển bền vững</span>
@@ -29,8 +30,8 @@
   </div>
   <header>
     <div class="logo">
-      <a href="#">
-        <!-- <img src="./images/68675905_1156488254559070_6992010623911460864_n.png" alt=""> -->
+      <a href="index.php">
+        <img src="../../images/brand-icon.png" alt="">
       </a>
     </div>
     <nav>
@@ -133,13 +134,18 @@
       </div>
       <div class="row">
         <?php 
-          if (true) {
+          $db = new DBConnect();
+          $conn = $db->connect();
+          
+          $sql = "SELECT id, title, imgAddress, category_id FROM products WHERE new_item=1";
+          $result = $conn->query($sql);
+         
+          if ($result->num_rows > 0) { 
             $checkIndexAtTwoColsState = 0;
             $checkIndexAtThreeColState = 0;
             $indexAtTwoColsState = "left";
             $indexAtThreeColsState = "st";
-            $i = 0;
-            while($i < 6) {        
+            while($row = $result->fetch_assoc()) {        
               if ($checkIndexAtTwoColsState === 0) {
                 $indexAtTwoColsState = "left";
                 $checkIndexAtTwoColsState = 1;
@@ -162,15 +168,13 @@
               <div class="col col-lg-4 col-md-6 col-12 <?php echo $indexAtTwoColsState;?>-col <?php echo $indexAtThreeColsState; ?>-col">
                 <div class="item" data-aos="fade-up">
                   <span class="info">
-                    <span class="content">Content</span>
-                    <button><a href="#">Chi tiết</a></button>
+                    <button><a href="product-detail.php?id=<?php echo $row["id"]; ?>&categoryId=<?php echo $row["category_id"]; ?>">Chi tiết</a></button>
                   </span>
-                  <img src="./images/carousel-image-3.jpg" alt="">
-                  <span class="caption">Caption text</span>
+                  <img src="<?php echo $row['imgAddress']; ?>" alt="">
+                  <span class="caption"><?php echo $row['title']; ?></span>
                 </div>
               </div>
         <?php 
-            $i++;
             }
           }
         ?>
@@ -180,142 +184,56 @@
       <div class="item-category">
         <h3>
           <span class="category-title">
-            Sản phẩm bán chạy nhất
+            Sản phẩm bán chạy
           </span>
         </h3>
       </div>
       <div class="row">
-        <div class="col col-lg-4 col-md-6 col-12 col-left st-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-right nd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-left rd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-right st-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-left nd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-right rd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="new-items">
-      <div class="item-category">
-        <h3>
-          <span class="category-title">
-            Sản phẩm bán chạy nhất
-          </span>
-        </h3>
-      </div>
-      <div class="row">
-        <div class="col col-lg-4 col-md-6 col-12 col-left st-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-right nd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-left rd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-right st-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-left nd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
-        <div class="col col-lg-4 col-md-6 col-12 col-right rd-col">
-          <div class="item" data-aos="fade-up">
-            <span class="info">
-              <span class="content">Content</span>
-              <button><a href="#">Chi tiết</a></button>
-            </span>
-            <img src="./images/carousel-image-3.jpg" alt="">
-            <span class="caption">Caption text</span>
-          </div>
-        </div>
+        <?php 
+          $db = new DBConnect();
+          $conn = $db->connect();
+          
+          $sql = "SELECT id, title, imgAddress, category_id FROM products WHERE best_seller=1";
+          $result = $conn->query($sql);
+         
+          if ($result->num_rows > 0) { 
+            $checkIndexAtTwoColsState = 0;
+            $checkIndexAtThreeColState = 0;
+            $indexAtTwoColsState = "left";
+            $indexAtThreeColsState = "st";
+            while($row = $result->fetch_assoc()) {        
+              if ($checkIndexAtTwoColsState === 0) {
+                $indexAtTwoColsState = "left";
+                $checkIndexAtTwoColsState = 1;
+              } else {
+                $indexAtTwoColsState = "right";
+                $checkIndexAtTwoColsState = 0;
+              }
+    
+              if ($checkIndexAtThreeColState === 0) {
+                $indexAtThreeColsState = "st";
+                $checkIndexAtThreeColState = 1;
+              } else if ($checkIndexAtThreeColState === 1) {
+                $indexAtThreeColsState = "nd";
+                $checkIndexAtThreeColState = 2;
+              } else {
+                $indexAtThreeColsState = "rd";
+                $checkIndexAtThreeColState = 0;
+              }
+        ?>
+              <div class="col col-lg-4 col-md-6 col-12 <?php echo $indexAtTwoColsState;?>-col <?php echo $indexAtThreeColsState; ?>-col">
+                <div class="item" data-aos="fade-up">
+                  <span class="info">
+                    <button><a href="product-detail.php?id=<?php echo $row["id"]; ?>&categoryId=<?php echo $row["category_id"]; ?>">Chi tiết</a></button>
+                  </span>
+                  <img src="<?php echo $row['imgAddress']; ?>" alt="">
+                  <span class="caption"><?php echo $row['title']; ?></span>
+                </div>
+              </div>
+        <?php 
+            }
+          }
+        ?>
       </div>
     </div>
   </div>
@@ -376,9 +294,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="./js/aos.js"></script>
-  <script src="./js/navbar.js"></script>
-  <script src="./js/product.js"></script>
+  <script src="../../js/aos.js"></script>
+  <script src="../../js/navbar.js"></script>
+  <script src="../../js/product.js"></script>
   <script>
     AOS.init({
       duration: 400

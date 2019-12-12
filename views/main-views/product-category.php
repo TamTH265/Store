@@ -5,22 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</title>
   <script src="https://use.fontawesome.com/375cd7e549.js"></script>
+  <link rel=icon href="../../images/brand-icon.png">
   <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles/all.min.css">
+  <link rel="stylesheet" href="../../styles/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="./styles/navbar.css">
-  <link rel="stylesheet" href="./styles/footer.css">
-  <link rel="stylesheet" href="./styles/product-category.css">
+  <link rel="stylesheet" href="../../styles/navbar.css">
+  <link rel="stylesheet" href="../../styles/footer.css">
+  <link rel="stylesheet" href="../../styles/product-category.css">
 </head>
 
 <body>
-  <?php require('./DBConnect.php'); ?>
+  <?php require('DBConnect.php'); ?>
   <div id="banner">
-    <img src="./images/banner.jpg" alt="">
+    <img src="../../images/banner.jpg" alt="">
     <div>
       <span>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</span>
       <span>Niềm tin và sự phát triển bền vững</span>
@@ -28,8 +29,8 @@
   </div>
   <header>
     <div class="logo">
-      <a href="#">
-        <!-- <img src="./images/68675905_1156488254559070_6992010623911460864_n.png" alt=""> -->
+      <a href="index.php">
+        <img src="../../images/brand-icon.png" alt="">
       </a>
     </div>
     <nav>
@@ -194,7 +195,6 @@
         <div class="col col-lg-4 col-sm-6 col-12 <?php echo $indexAtTwoColsState;?>-col <?php echo $indexAtThreeColsState; ?>-col">
           <div class="item" data-aos="fade-up">
             <span class="info">
-              <span class="content">Content</span>
               <button><a href="product-detail.php?id=<?php echo $row["id"]; ?>&categoryId=<?php echo $row["category_id"]; ?>">Chi tiết</a></button>
             </span>
             <img src="<?php echo $row["imgAddress"]; ?>" alt="">
@@ -337,7 +337,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="./js/navbar.js"></script>
+  <script src="../../js/navbar.js"></script>
 </body>
 </body>
 

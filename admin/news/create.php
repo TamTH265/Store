@@ -79,7 +79,7 @@
     
     <script>
         CKEDITOR.replace('editor', {
-            filebrowserUploadUrl: '../upload.php',
+            filebrowserUploadUrl: '../DBControl/upload.php',
             filebrowserUploadMethod: 'form',
             resize_enabled: false,
             uiColor: '#0088ff',

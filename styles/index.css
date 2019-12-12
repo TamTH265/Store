@@ -53,7 +53,7 @@
   position: relative;
   margin-left: 12%;
   transform: skew(10deg);
-  background-image: url("../images/index-image-1.jpg");
+  background-image: url('../images/index-image-1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -70,7 +70,7 @@
 .bottom-section {
   width: 100%;
   position: relative;
-  background-image: url("https://thuthuatnhanh.com/wp-content/uploads/2018/09/hinh-anh-thanh-pho-new-york-cau-brooklyn-dem.jpg");
+  background-image: url('https://thuthuatnhanh.com/wp-content/uploads/2018/09/hinh-anh-thanh-pho-new-york-cau-brooklyn-dem.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   padding: 100px 0 30px 0;
@@ -82,7 +82,7 @@
 .bottom-section::before {
   width: 100%;
   height: 100%;
-  content: "";
+  content: '';
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 0;
@@ -147,7 +147,7 @@
 .left-section .left-section-inner .interface-left-section::before {
   width: 100%;
   height: 100%;
-  content: "";
+  content: '';
   background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   top: 0;
@@ -158,7 +158,7 @@
 .main-content .right-section {
   width: 60%;
   height: 500px;
-  background: url("../images/index-image-2.jpeg");
+  background: url('../images/index-image-2.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -195,6 +195,306 @@
   font-weight: 500;
 }
 
+.main-step-by-step {
+  width: 100%;
+  height: auto;
+}
+
+.sub-step-by-step {
+  background-color: #242424;
+  width: 100%;
+  height: auto;
+}
+
+.super-sub {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+.element-step-by-step {
+  width: 15%;
+  height: 100%;
+  padding: 70px 0;
+  position: relative;
+}
+
+.super-sub .icon {
+  color: rgba(184, 184, 184, 1);
+  font-size: 40px;
+  position: absolute;
+}
+
+.super-sub .icon-dollar {
+  font-size: 38px;
+  left: 10px;
+}
+
+.super-sub .number-way {
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(112, 81, 174);
+  padding-left: 43px;
+  padding-bottom: 3px;
+}
+
+.super-sub .title-way {
+  font-size: 22px;
+  padding-left: 43px;
+  padding-bottom: 8px;
+}
+
+.super-sub .content-way {
+  color: rgb(117, 117, 117);
+  font-size: 15px;
+  padding-left: 40px;
+}
+
+.super-sub .step-first .title-1 {
+  color: rgb(200, 75, 23);
+}
+
+.super-sub .step-second .title-2 {
+  color: rgb(114, 102, 238);
+}
+
+.super-sub .step-third .title-3 {
+  color: rgb(145, 111, 16);
+}
+
+.super-sub .step-fourth .title-4 {
+  color: rgb(63, 92, 11);
+}
+
+.super-sub .step-fifth .title-5 {
+  color: rgb(92, 52, 11);
+}
+
+.main-product-information {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  background-color: rgb(230, 230, 230);
+}
+
+.sub-product-information {
+  width: 100%;
+  height: auto;
+  padding: 0 200px;
+  box-sizing: border-box;
+  margin-right: 0;
+}
+
+.sub-product-information .title-product-information {
+  text-align: center;
+  padding: 50px 0 25px 0;
+}
+
+.sub-product-information .border-product-inf {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.sub-product-information .border-product-detail {
+  border-bottom: 4px solid rgb(229, 174, 73);
+}
+
+.sub-product-information .detail-product-information {
+  text-align: center;
+  padding: 10px 0 25px 0;
+  width: 60%;
+  margin: 0 auto;
+  color: rgb(122, 122, 122);
+}
+
+.sub-product-information .content-product {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+.sub-product-information .content-product .content-product-detail {
+  width: 380px;
+  height: auto;
+}
+.sub-product-information .content-product a {
+  text-decoration: none;
+  color: black;
+}
+.sub-product-information .content-product .img-product {
+  width: 100%;
+  height: auto;
+}
+.sub-product-information .content-product .img-product img:hover {
+  transform: scale(1.05);
+}
+.sub-product-information
+  .content-product
+  .img-product
+  .img-pro-detail:hover
+  + .img-title {
+  color: #ff7c00;
+}
+.sub-product-information .content-product .img-product .img-pro-detail {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sub-product-information .content-product .img-product img {
+  user-select: none;
+  width: 100%;
+  transition: 0.5s;
+  display: block;
+}
+
+.sub-product-information .content-product .img-product .img-title {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  transition: 0.3s;
+}
+.sub-product-information .content-product .img-product .img-title:hover {
+  color: #ff7c00;
+}
+.sub-product-information .content-product .img-product .img-content {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0 20px 0;
+}
+
+.four-picture {
+  width: 100%;
+  height: auto;
+}
+
+.four-picture .four-pic-detail {
+  width: 100%;
+  height: auto;
+  padding: 80px 400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.four-picture .four-pic-detail .sub-four-pic {
+  width: 50%;
+  height: auto;
+}
+
+.four-picture .four-pic-detail .sub-four-pic img {
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.certificate {
+  width: 100%;
+  height: auto;
+}
+
+.certificate .certificate-detail {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  padding: 50px 0;
+}
+
+.certificate .certificate-detail .each-certificate {
+  width: 250px;
+  height: auto;
+  position: relative;
+  transition: 0.4s;
+  user-select: none;
+}
+.certificate .certificate-detail .each-certificate:hover {
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 45%;
+}
+
+.certificate .certificate-detail .each-certificate .icon {
+  text-align: center;
+  font-size: 50px;
+  position: absolute;
+  left: 39%;
+  top: 30px;
+}
+
+.certificate .certificate-detail .each-certificate .number-certificate {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  color: rgb(229, 174, 73);
+  padding-top: 100px;
+}
+
+.certificate .certificate-detail .each-certificate .content-certificate {
+  text-align: center;
+  font-size: 20px;
+  padding-top: 20px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 1600px) {
+  .sub-product-information {
+    padding: 0 150px;
+  }
+
+  .sub-product-information .content-product .content-product-detail {
+    width: 300px;
+  }
+
+  .sub-product-information .content-product .img-product img {
+    height: 250px;
+  }
+
+  .four-picture .four-pic-detail {
+    padding: 80px 300px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .sub-product-information {
+    padding: 0 100px;
+  }
+
+  .sub-product-information .content-product .content-product-detail {
+    width: 250px;
+  }
+  .four-picture .four-pic-detail {
+    padding: 80px 200px;
+  }
+}
+
+@media screen and (max-width: 1116px) {
+  .certificate .certificate-detail .each-certificate {
+    width: 400px;
+  }
+  .certificate .certificate-detail .each-certificate:hover {
+    border-radius: 45%;
+  }
+  .certificate .certificate-detail .each-certificate .icon {
+    left: 43%;
+    top: 30px;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .carousel .carousel-inner {
     height: 380px;
@@ -206,6 +506,48 @@
 
   .bottom-icons {
     margin-top: 0;
+  }
+
+  .super-sub {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-content: space-around;
+  }
+
+  .element-step-by-step {
+    width: 40%;
+    padding: 30px 0;
+    position: relative;
+  }
+
+  .sub-product-information .content-product {
+    flex-flow: column wrap;
+  }
+
+  .sub-product-information .content-product .content-product-detail {
+    width: 400px;
+  }
+
+  .sub-product-information .content-product .img-product img {
+    height: 300px;
+  }
+
+  .four-picture .four-pic-detail .sub-four-pic {
+    width: 100%;
+  }
+
+  .certificate .certificate-detail .each-certificate {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .certificate .certificate-detail .each-certificate:hover {
+    border-radius: 0;
+  }
+
+  .certificate .certificate-detail .each-certificate .icon {
+    left: 47%;
   }
 }
 
@@ -220,6 +562,10 @@
 
   .bottom-icons span {
     margin: 8%;
+  }
+
+  .four-picture .four-pic-detail {
+    padding: 80px 100px;
   }
 }
 
@@ -236,6 +582,10 @@
   .main-content .right-section {
     width: 100%;
     height: 400px;
+  }
+
+  .sub-product-information .content-product .content-product-detail {
+    width: 140%;
   }
 
   .bottom-icons span {
@@ -268,5 +618,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .certificate .certificate-detail .each-certificate .icon {
+    left: 45%;
+  }
+
+  .sub-product-information .content-product .img-product .img-pro-detail {
+    height: 50vw;
   }
 }

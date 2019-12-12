@@ -8,7 +8,7 @@
         protected $dbConn;
 
         public function __construct() {
-            require_once('../DBConnect.php');
+            require_once('../DBControl/DBConnect.php');
             $db = new DBConnect();
             $this->dbConn = $db->connect();
         }
@@ -66,22 +66,22 @@
         }
 
         public function getItemById() {
-            $sql = 'select id, content from services where id=?';
+            $sql = 'select id, title, imgAddress, content, category_id from products where id=?';
             $stmt = $this->dbConn->prepare($sql);
             $stmt->bind_param('i', $this->id);
             if (!$stmt->execute()) {
                 return false;
             }
-            $stmt->bind_result($this->id, $this->content);
+            $stmt->bind_result($this->id, $this->title, $this->imgAddress, $this->content, $this->categoryId);
             $stmt->fetch();
-            $item = array($this->id, $this->content);
+            $item = array($this->id, $this->title, $this->imgAddress, $this->content, $this->categoryId);
             return $item;
         }
 
         public function update() {
-            $sql = 'update services set content=? where id=?';
+            $sql = 'update products set title=?, imgAddress=?, content=?, category_id=? where id=?';
             $stmt = $this->dbConn->prepare($sql);
-            $stmt->bind_param('si', $this->content, $this->id);
+            $stmt->bind_param('ssssi', $this->title, $this->imgAddress, $this->content, $this->categoryId, $this->id);
             if (!$stmt->execute()) {
                 return false;
             }

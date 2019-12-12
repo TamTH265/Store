@@ -5,21 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</title>
   <script src="https://use.fontawesome.com/375cd7e549.js"></script>
+  <link rel=icon href="../../images/brand-icon.png">
   <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles/all.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="./styles/navbar.css">
-  <link rel="stylesheet" href="./styles/footer.css">
-  <link rel="stylesheet" href="./styles/product-detail.css">
+  <link rel="stylesheet" href="../../styles/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../styles/navbar.css">
+  <link rel="stylesheet" href="../../styles/footer.css">
+  <link rel="stylesheet" href="../../styles/color-board.css">
 </head>
 
 <body>
-  <?php require('./DBConnect.php'); ?>
+  <?php require('DBConnect.php'); ?>
   <div id="banner">
-    <img src="./images/banner.jpg" alt="">
+    <img src="../../images/banner.jpg" alt="">
     <div>
       <span>CÔNG TY CỔ PHẦN TM - XD HIỆP Á</span>
       <span>Niềm tin và sự phát triển bền vững</span>
@@ -27,8 +29,8 @@
   </div>
   <header>
     <div class="logo">
-      <a href="#">
-        <!-- <img src="./images/68675905_1156488254559070_6992010623911460864_n.png" alt=""> -->
+      <a href="index.php">
+        <img src="../../images/brand-icon.png" alt="">
       </a>
     </div>
     <nav>
@@ -84,75 +86,73 @@
 
   <div class="container">
     <div class="row">
-      <div class="row-top col-lg-9">
-      <?php
-        if (isset($_REQUEST['id']) && isset($_REQUEST['categoryId'])) {
+      <div class="col col-lg-3 col-12 left-container">
+        <div id="sidebar">
+          Chủ đề
+        </div>
+        <div class="panel-body panel-link-div">
+            <span><i class="fas fa-angle-right"></i></span>
+            <a href="#category-1" class="panel-link">Bảng màu compact </a>
+        </div>
+        <div class="panel-body panel-link-div">
+            <span><i class="fas fa-angle-right"></i></span>
+            <a href="#category-2" class="panel-link">Bảng màu MFC - Màu vân gỗ </a>
+        </div>
+        <div class="panel-body panel-link-div">
+            <span><i class="fas fa-angle-right"></i></span>
+            <a href="#category-3" class="panel-link">Bảng màu MFC - Màu trơn  </a>
+        </div>
+      </div>
+      <div class="col col-lg-9 col-12 right-container">
+        <div id="title">
+          <h3>Bảng màu</h3>
+        </div>
+        <div>
+        <?php 
           $db = new DBConnect();
           $conn = $db->connect();
           
-          $sql = "SELECT title, content FROM products WHERE id=" . $_REQUEST['id'] . " AND category_id=". $_REQUEST['categoryId'];
+          $sql = "SELECT id, color FROM color WHERE parent_color_id = 0";
           $result = $conn->query($sql);
+          $listParent = array();
+
           if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-      ?>
-            <div class="title">
-              <h5><?php echo $row['title']; ?></h5>
-            </div>
-            <div class="content">
-              <?php echo $row['content']; ?>
-            </div>
-        <?php 
+            while($row = $result->fetch_assoc()) {
+              $listParent[] = $row;
+            }
           }
-        }   
-        ?>
-      </div>
-      <div class="row-down col-lg-3">
-        <div class="panel panel-right-top">
-          <div class="panel-heading">CHỦ ĐỀ</div>
-          <div class="panel-body panel-link-div">
-            <span><i class="fas fa-angle-right"></i></span>
-            <a href="#" class="panel-link">Phần nội dung </a>
-          </div>
-          <div class="panel-body panel-link-div">
-            <span><i class="fas fa-angle-right"></i></span>
-            <a href="#" class="panel-link">Phần nội dung </a>
-          </div>
-          <div class="panel-body panel-link-div">
-            <span><i class="fas fa-angle-right"></i></span>
-            <a href="#" class="panel-link">Phần nội dung </a>
-          </div>
-        </div>
+          $conn->close();
+          $index = 0;  
+          $colorCategory = array("compact", "vango", "tron");
 
-        <div class="panel panel-right-down">
-          <div class="panel-heading-down">TIN NỔI BẬT</div>
+          foreach($listParent as $row) {
+            $db = new DBConnect();
+            $conn = $db->connect();
+            
+            $sql = "SELECT color FROM color WHERE parent_color_id = " . $row["id"];
+            $result = $conn->query($sql);   
 
-          <div class="shock-news shock-news-bottom">
-            <div class="media-img">
-              <a href="#"><img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="align-self-start mr-3" alt="..."></a>
-            </div>
-            <a href="#" class="shock-news-title">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</a>
+            if ($result->num_rows > 0) {   
+        ?>       
+          <h1 id="category-<?php echo $index + 1;?>" class="sub-title"><?php echo  $row["color"] ; ?></h1>    
+          <?php while ($r = $result->fetch_assoc()) { ?>       
+          <div class="right-container-side">
+          
+            <div class="img"><a href="#"><img src="../../images/color/<?php echo $colorCategory[$index] . "/" . $r["color"] . ".png";?>" alt=""></a></div>
+            <div class="title-img"><a href="#"><?php echo $r["color"]; ?></a></div>
           </div>
-
-          <div class="shock-news shock-news-bottom">
-            <div class="media-img">
-              <a href="#"><img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="align-self-start mr-3" alt="..."></a>
-            </div>
-            <a href="#" class="shock-news-title">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</a>
-          </div>
-
-          <div class="shock-news shock-news-bottom">
-            <div class="media-img">
-              <a href="#"><img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="align-self-start mr-3" alt="..."></a>
-            </div>
-            <a href="#" class="shock-news-title">PHÂN BIỆT TẤM COMPACT HPL VỚI GỖ MFC</a>
-          </div>
-
+          <?php
+              }
+            }
+            $index++;
+          }
+          ?>
         </div>
       </div>
     </div>
-
   </div>
 
+  </div>
   <footer id="footer" class="container-fluid">
     <div class="row footer-interface">
       <div class="footer-left col col-lg-6 col-sm-12 col-12">
@@ -202,10 +202,12 @@
       </div>
     </div>
   </footer>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="./js/navbar.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="../../js/navbar.js"></script>
 </body>
-
 </html>

@@ -8,7 +8,7 @@
         protected $dbConn;
 
         public function __construct() {
-            require_once('../DBConnect.php');
+            require_once('../DBControl/DBConnect.php');
             $db = new DBConnect();
             $this->dbConn = $db->connect();
         }
